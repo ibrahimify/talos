@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   color-scheme: dark;
   --bg: #0b0c0d;
   --surface: #111315;
@@ -18,7 +18,7 @@ body { margin: 0; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; cursor: pointer; }
 a, button { -webkit-tap-highlight-color: transparent; }
-button:focus-visible, a:focus-visible { outline: 2px solid var(--copper); outline-offset: 6px; }
+button:focus-visible, a:focus-visible, #prompt-text:focus-visible { outline: 2px solid var(--copper); outline-offset: 6px; }
 .shell { width: calc(100% - 112px); max-width: 1480px; margin-inline: auto; }
 .mono { font-family: ui-monospace, 'Cascadia Code', Consolas, monospace; font-size: 10px; font-weight: 400; line-height: 1.65; letter-spacing: .08em; }
 .masthead { height: 94px; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 5; border-bottom: 1px solid var(--line); }
@@ -100,16 +100,11 @@ h3 { font-size: clamp(22px, 2.5vw, 36px); font-weight: 450; letter-spacing: -.05
 .references a span { display: block; color: var(--muted); font-size: 10px; margin-top: 9px; }
 .references a:hover { color: var(--copper); }
 .prompt-workbench { border: 1px solid #434342; background: var(--surface); }
-.prompt-options { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--line); }
-.prompt-options button { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 24px; background: none; color: var(--muted); border: 0; font-size: 13px; text-align: left; border-bottom: 2px solid transparent; }
-.prompt-options button+button { border-left: 1px solid var(--line); }
-.prompt-options button>span { font: 9px ui-monospace, monospace; }
-.prompt-options button>span:last-child { margin-left: auto; font-size: 20px; }
-.prompt-options button[aria-pressed=true] { color: var(--ink); background: #1b1d1e; border-bottom-color: var(--copper); }
-.prompt-options button[aria-pressed=true]>span { color: var(--copper); }
+.onboarding-heading { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 22px 32px; border-bottom: 1px solid var(--line); color: var(--copper); }
+.onboarding-heading>span:last-child { color: var(--muted); }
 .prompt-content { padding: 32px; }
 .prompt-label { display: flex; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 8px; }
-#prompt-text { font-family: ui-monospace, 'Cascadia Code', Consolas, monospace; font-size: clamp(13px, 1.4vw, 18px); line-height: 1.8; max-width: 1020px; min-height: 100px; margin: 28px 0; overflow-wrap: anywhere; }
+#prompt-text { white-space: pre-line; max-height: 360px; overflow-y: auto; padding-right: 20px; scrollbar-color: #626361 var(--surface); font-family: ui-monospace, 'Cascadia Code', Consolas, monospace; font-size: clamp(13px, 1.4vw, 18px); line-height: 1.8; max-width: 1020px; min-height: 100px; margin: 28px 0; overflow-wrap: anywhere; }
 .prompt-footer { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
 .prompt-footer>.mono { color: var(--muted); font-size: 8px; }
 .copy-button { display: flex; align-items: center; justify-content: space-between; gap: 60px; background: var(--copper); color: #17120e; padding: 16px 22px; border: 0; font-size: 12px; min-height: 48px; }
@@ -198,8 +193,8 @@ footer div a { display: block; color: var(--ink); }
   .references { grid-template-columns: 1fr; gap: 20px; }
   .references a { display: flex; justify-content: space-between; align-items: baseline; font-size: 11px; }
   .references a span { margin: 0; font-size: 9px; }
-  .prompt-options button { flex-direction: column; align-items: start; padding: 15px 10px; font-size: 10px; gap: 10px; }
-  .prompt-options button>span:last-child { display: none; }
+  .onboarding-heading { padding: 18px 20px; flex-wrap: wrap; gap: 6px; }
+  .onboarding-heading .mono { font-size: 9px; }
   .prompt-content { padding: 20px; }
   .prompt-label { font-size: 7px; }
   #prompt-size { display: none; }

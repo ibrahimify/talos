@@ -1,42 +1,29 @@
 "use strict";
 const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
-const prompts = {
-  research: "Work in the private team repo. Check local instructions and git status; preserve teammates' changes. Run git fetch origin once, then git show origin/research:docs/research/START_HERE.md. Follow the brief; open only task-relevant details. If repo access is unavailable, say so. Implement and verify the smallest useful slice. My task is: ",
-  branding: "Work in the private team repo. Check local instructions and git status; preserve teammates' changes. Run git fetch origin once, then git show origin/branding:docs/design/START_HERE.md. Follow the correct TALOS surface and open only task-relevant files. If repo access is unavailable, say so. Implement and verify the result. My task is: ",
-  both: "Work in the private team repo. Check local instructions and git status; preserve teammates' changes. Run git fetch origin once. Read git show origin/research:docs/research/START_HERE.md and git show origin/branding:docs/design/START_HERE.md. Follow both briefs; open only task-relevant details, not full reports. If repo access is unavailable, say so. Implement and verify. My task is: "
-};
+const onboardingPrompt = "You are joining TALOS in the private siemens_healthineers team repository. Your task now is complete project onboarding: read the research, learn the branding, inspect the current project and report your understanding. This is a complete assignment. Do not ask me to supply a separate task.\n\n1. Read README.md and any applicable AGENTS.md/local instructions. Run git status --short and identify the current branch. Preserve all teammate changes and untracked files. Run git fetch origin once. Do not switch branches, merge, reset or overwrite files just to read the guides. If repository access or a required branch is unavailable, report the exact blocker rather than guessing.\n\n2. Read the complete research from origin/research. Start with:\ngit show origin/research:docs/research/START_HERE.md\ngit show origin/research:docs/research/SIEMENS_C2_MASTER_RESEARCH.md\ngit show origin/research:docs/research/SIEMENS_C2_SLIDE_REFERENCE.md\nUse git ls-tree -r --name-only origin/research -- docs/research to discover any additional tracked Markdown research files and read them with git show origin/research:<path>. Read every section, using bounded chunks when needed so tool-output limits do not silently skip content. Read each file once; do not automatically crawl every external paper or archive.\n\n3. Read all branding guidance from origin/branding. Start with:\ngit show origin/branding:docs/design/START_HERE.md\ngit show origin/branding:docs/design/README.md\nUse git ls-tree -r --name-only origin/branding -- docs/design to discover and read every tracked Markdown file there with git show origin/branding:<path>. This onboarding explicitly requires the full research and design guidance; short-brief-only defaults apply to later focused tasks. Also inspect origin/branding:web/team-guide/README.md and the manual's index.html, styles.css and app.js to understand the implemented design and motion.\n\n4. Inspect the current local project structure and relevant code without assuming the research inventory is current. Distinguish organizer requirements, proposals, implemented features and unverified results. Learn the five-stage learning pipeline, acceptance evidence, iterative V-model/DevOps workflow, model compatibility and evaluation/release rules. Follow current user decisions and organizer instructions over older proposals. Use TALOS branding consistently: the implemented team manual is dark charcoal/copper with editorial typography and purposeful free native motion; the proposed operational workbench is a distinct surface. Preserve reduced-motion support, pause controls, responsive layouts and truthful states. Follow the documented confidentiality, tool/data authorization and MIT/Apache dependency rules. Keep private data and assets out of public services and commits.\n\n5. Finish by giving a concise onboarding report: files/branch revisions actually read; your understanding of the pipeline and definition of done; branding/motion rules you will follow; what exists versus what is proposed; and concrete blockers or contradictions. Do not claim unread files or unrun checks as completed. Do not start unrelated implementation, training, package installation or deployment during onboarding. If I already assigned a separate implementation task in this conversation, apply what you learned and continue it; otherwise conclude that onboarding is complete and you are ready. No placeholder needs filling in.";
 const promptText = document.getElementById("prompt-text");
 const copyButton = document.getElementById("copy-prompt");
 const copyStatus = document.getElementById("copy-status");
-let selectedPrompt = "research";
 let copyReset;
-function showPrompt(key) {
-  selectedPrompt = key;
-  promptText.textContent = prompts[key];
-  document.getElementById("prompt-size").textContent = `${prompts[key].trim().split(/\s+/).length} WORDS`;
-  document.querySelectorAll("[data-prompt]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.prompt === key)));
-  clearTimeout(copyReset);
-  copyButton.firstElementChild.textContent = "Copy prompt";
-  copyStatus.textContent = "";
-}
-for (const button of document.querySelectorAll("[data-prompt]")) button.addEventListener("click", () => showPrompt(button.dataset.prompt));
+promptText.textContent = onboardingPrompt;
+document.getElementById("prompt-size").textContent = `${onboardingPrompt.trim().split(/\s+/).length} WORDS`;
 copyButton.addEventListener("click", async () => {
+  clearTimeout(copyReset);
   try {
-    await navigator.clipboard.writeText(prompts[selectedPrompt]);
+    await navigator.clipboard.writeText(onboardingPrompt);
     copyButton.firstElementChild.textContent = "Copied";
-    copyStatus.textContent = "Prompt copied. Append your task before sending.";
-    copyReset = setTimeout(() => { copyButton.firstElementChild.textContent = "Copy prompt"; }, 2200);
+    copyStatus.textContent = "Complete onboarding prompt copied. Paste and send it as-is.";
+    copyReset = setTimeout(() => { copyButton.firstElementChild.textContent = "Copy onboarding prompt"; }, 2200);
   } catch {
     const range = document.createRange();
     range.selectNodeContents(promptText);
     const selection = getSelection();
     selection.removeAllRanges();
     selection.addRange(range);
-    copyStatus.textContent = "The prompt is selected. Use your device's copy command.";
+    copyStatus.textContent = "The complete prompt is selected. Use your device's copy command.";
     copyButton.firstElementChild.textContent = "Text selected";
   }
 });
-showPrompt(selectedPrompt);
 
 const stages = [
   ["DEFINE", "Agree on the smallest useful behavior and the evidence that would demonstrate it."],
