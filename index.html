@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="dark">
-  <meta name="theme-color" content="#0b0c0d">
+  <meta name="theme-color" content="#10130f">
   <meta name="description" content="TALOS. A shared direction for our robotics team: the brief, the learning loop and the blueprint.">
   <title>TALOS | Team manual</title>
   <link rel="stylesheet" href="styles.css">
@@ -25,26 +25,41 @@
         <div class="art-coordinate coord-left">HUMAN INTENT<br><span>INPUT ↗</span></div><div class="art-coordinate coord-right">LEARNED BEHAVIOR<br><span>↙ OUTPUT</span></div>
       </div>
       <h1 id="hero-title" class="hero-title" aria-label="TALOS"><span aria-hidden="true">T</span><span aria-hidden="true">A</span><span aria-hidden="true">L</span><span aria-hidden="true">O</span><span aria-hidden="true">S</span></h1>
-      <div class="hero-bottom shell"><p>From demonstration<br>to <em>capability.</em></p><div class="hero-caption"><p>Named for the bronze guardian.<br>Built around a learning loop.</p><a class="text-link" href="#start">Brief your assistant <span aria-hidden="true">↗</span></a></div><a class="scroll-cue mono" href="#workflow">EXPLORE THE SYSTEM <span aria-hidden="true">↓</span></a></div>
+      <div class="hero-bottom shell"><p>From demonstration<br>to <em>capability.</em></p><div class="hero-caption"><a class="text-link" href="#start">Brief your assistant <span aria-hidden="true">↗</span></a></div><a class="scroll-cue mono" href="#workflow">EXPLORE THE SYSTEM <span aria-hidden="true">↓</span></a></div>
       <button id="motion-toggle" class="motion-toggle mono" type="button" aria-pressed="false">PAUSE MOTION <span aria-hidden="true">Ⅱ</span></button>
     </section>
 
     <section id="workflow" class="workflow section shell" aria-labelledby="workflow-title">
       <div class="section-meta"><span class="mono">01 / THE LOOP</span><span class="mono">ITERATIVE V-MODEL + DEVOPS</span></div>
-      <div class="workflow-layout"><div class="workflow-copy"><h2 data-reveal>Build.<br>Prove.<br><em>Repeat.</em></h2><p class="body-copy">A requirement and a check.<br>A small slice and real evidence.<br>One better decision next time.</p><button id="play" class="round-control" type="button" aria-pressed="true"><span class="control-icon" aria-hidden="true">Ⅱ</span><span id="play-label">Pause the loop</span></button><p class="footnote">Illustrative lifecycle, not live training.</p></div>
+      <div class="workflow-layout"><div class="workflow-copy"><h2 data-reveal>Build.<br>Prove.<br><em>Repeat.</em></h2><p class="body-copy">Plan the requirement.<br>Build and test the slice.<br>Operate, monitor and feed back.</p><button id="play" class="round-control" type="button" aria-pressed="true"><span class="control-icon" aria-hidden="true">Ⅱ</span><span id="play-label">Pause the loop</span></button><p class="footnote">Illustrative lifecycle, not live training.</p></div>
       <div class="loop-system" data-reveal>
-        <div class="loop-top mono"><span>CONTINUOUS LEARNING SYSTEM</span><span id="stage-count">01 / DEFINE</span></div>
+        <div class="loop-top mono"><span>CONTINUOUS DELIVERY &amp; FEEDBACK</span><span id="stage-count">01 / PLAN</span></div>
         <svg class="loop-visual" viewBox="0 0 880 480" aria-hidden="true">
-          <defs><linearGradient id="loop-gradient" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b26338"/><stop offset=".5" stop-color="#ffd0a7"/><stop offset="1" stop-color="#7aafac"/></linearGradient><filter id="beacon-glow"><feGaussianBlur stdDeviation="4"/></filter></defs>
+          <defs><filter id="beacon-glow"><feGaussianBlur stdDeviation="4"/></filter></defs>
           <g class="diagram-grid"><path d="M40 120H840M40 240H840M40 360H840M220 30V450M440 30V450M660 30V450"/></g>
-          <path class="loop-shadow" d="M440 240C300 50 70 70 70 240S300 430 440 240S810 50 810 240S580 430 440 240"/>
           <path id="loop-path" class="loop-line" d="M440 240C300 50 70 70 70 240S300 430 440 240S810 50 810 240S580 430 440 240"/>
+          <path class="loop-segment is-current" data-segment="0" d="M440 240C300 50 70 70 70 240S300 430 440 240S810 50 810 240S580 430 440 240" pathLength="800" stroke-dasharray="91 709" stroke-dashoffset="-4"/>
+          <path class="loop-segment" data-segment="1" d="M440 240C300 50 70 70 70 240S300 430 440 240S810 50 810 240S580 430 440 240" pathLength="800" stroke-dasharray="91 709" stroke-dashoffset="-104"/>
+          <path class="loop-segment" data-segment="2" d="M440 240C300 50 70 70 70 240S300 430 440 240S810 50 810 240S580 430 440 240" pathLength="800" stroke-dasharray="91 709" stroke-dashoffset="-204"/>
+          <path class="loop-segment" data-segment="3" d="M440 240C300 50 70 70 70 240S300 430 440 240S810 50 810 240S580 430 440 240" pathLength="800" stroke-dasharray="91 709" stroke-dashoffset="-304"/>
+          <path class="loop-segment" data-segment="4" d="M440 240C300 50 70 70 70 240S300 430 440 240S810 50 810 240S580 430 440 240" pathLength="800" stroke-dasharray="91 709" stroke-dashoffset="-404"/>
+          <path class="loop-segment" data-segment="5" d="M440 240C300 50 70 70 70 240S300 430 440 240S810 50 810 240S580 430 440 240" pathLength="800" stroke-dasharray="91 709" stroke-dashoffset="-504"/>
+          <path class="loop-segment" data-segment="6" d="M440 240C300 50 70 70 70 240S300 430 440 240S810 50 810 240S580 430 440 240" pathLength="800" stroke-dasharray="91 709" stroke-dashoffset="-604"/>
+          <path class="loop-segment" data-segment="7" d="M440 240C300 50 70 70 70 240S300 430 440 240S810 50 810 240S580 430 440 240" pathLength="800" stroke-dasharray="91 709" stroke-dashoffset="-704"/>
+          <text class="segment-label" x="350.2" y="152.4" transform="rotate(34.1 350.2 152.4)">PLAN</text>
+          <text class="segment-label" x="116.3" y="134.4" transform="rotate(-38.6 116.3 134.4)">CODE</text>
+          <text class="segment-label" x="125.9" y="352.5" transform="rotate(33.0 125.9 352.5)">BUILD</text>
+          <text class="segment-label" x="359.9" y="320.8" transform="rotate(-36.2 359.9 320.8)">TEST</text>
+          <text class="segment-label" x="538.4" y="144.6" transform="rotate(-33.7 538.4 144.6)">RELEASE</text>
+          <text class="segment-label" x="769.7" y="131.0" transform="rotate(43.5 769.7 131.0)">DEPLOY</text>
+          <text class="segment-label" x="760.6" y="356.8" transform="rotate(-37.4 760.6 356.8)">OPERATE</text>
+          <text class="segment-label" x="527.4" y="327.7" transform="rotate(35.9 527.4 327.7)">MONITOR</text>
           <path class="loop-flow" d="M440 240C300 50 70 70 70 240S300 430 440 240S810 50 810 240S580 430 440 240"/>
-          <circle id="beacon-halo" r="12" fill="#efad79" opacity=".6" filter="url(#beacon-glow)" cx="440" cy="240"/><circle id="beacon" r="4.5" fill="#ffe5ca" cx="440" cy="240"/>
-          <text x="235" y="243" class="diagram-label">DEVELOP</text><text x="647" y="243" class="diagram-label">OPERATE</text><text x="440" y="436" class="diagram-small">EVIDENCE RETURNS TO THE NEXT REQUIREMENT</text>
+          <circle id="beacon-halo" r="12" fill="#d9ff43" opacity=".6" filter="url(#beacon-glow)" cx="440" cy="240"/><circle id="beacon" r="4.5" fill="#fff" cx="440" cy="240"/>
+          <text x="235" y="243" class="diagram-label">DEV</text><text x="647" y="243" class="diagram-label">OPS</text><text x="440" y="452" class="diagram-small">MONITOR ? PLAN / THE NEXT ITERATION</text>
         </svg>
-        <div class="stage-nav" role="group" aria-label="Inspect a workflow stage"><button data-stage="0" class="active" aria-pressed="true"><span>01</span>Define</button><button data-stage="1" aria-pressed="false"><span>02</span>Build</button><button data-stage="2" aria-pressed="false"><span>03</span>Verify</button><button data-stage="3" aria-pressed="false"><span>04</span>Release</button><button data-stage="4" aria-pressed="false"><span>05</span>Learn</button></div>
-        <p id="stage-description" class="stage-description">Agree on the smallest useful behavior and the evidence that would demonstrate it.</p>
+        <div class="stage-nav" role="group" aria-label="Inspect all eight DevOps stages"><button type="button" data-stage="0" class="active" aria-pressed="true"><span>01</span>Plan</button><button type="button" data-stage="1" aria-pressed="false"><span>02</span>Code</button><button type="button" data-stage="2" aria-pressed="false"><span>03</span>Build</button><button type="button" data-stage="3" aria-pressed="false"><span>04</span>Test</button><button type="button" data-stage="4" aria-pressed="false"><span>05</span>Release</button><button type="button" data-stage="5" aria-pressed="false"><span>06</span>Deploy</button><button type="button" data-stage="6" aria-pressed="false"><span>07</span>Operate</button><button type="button" data-stage="7" aria-pressed="false"><span>08</span>Monitor</button></div>
+        <p id="stage-description" class="stage-description">Define the requirement, acceptance evidence and smallest useful implementation slice.</p>
       </div></div>
     </section>
 

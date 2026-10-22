@@ -26,12 +26,16 @@ copyButton.addEventListener("click", async () => {
 });
 
 const stages = [
-  ["DEFINE", "Agree on the smallest useful behavior and the evidence that would demonstrate it."],
-  ["BUILD", "Implement one compatible slice. Version the dataset, configuration and dependencies."],
-  ["VERIFY", "Replay the data and evaluate closed-loop rollouts against the original requirement."],
-  ["RELEASE", "Version the complete checkpoint and its evidence. Promote only a qualified candidate."],
-  ["LEARN", "Review the failures. Keep the incumbent if results regress. Choose one change for the next cycle."]
+  ["PLAN", "Define the requirement, acceptance evidence and smallest useful implementation slice."],
+  ["CODE", "Implement the slice using the agreed research, interfaces and TALOS design guidance."],
+  ["BUILD", "Create a reproducible package with pinned dependencies, configuration and versioned artifacts."],
+  ["TEST", "Check data contracts, cold reload and closed-loop rollout evidence against the requirement."],
+  ["RELEASE", "Review the candidate and its evidence. Qualify the version or retain the incumbent."],
+  ["DEPLOY", "Load the qualified policy into the approved simulator runtime and verify compatibility."],
+  ["OPERATE", "Run the assigned task with the selected policy and record actual execution outcomes."],
+  ["MONITOR", "Inspect failures, latency and regressions. Feed one evidence-backed change into the next plan."]
 ];
+const cycleDuration = 24000;
 let currentStage = 0;
 let loopRunning = !reducedMotion.matches;
 let motionPaused = reducedMotion.matches;
@@ -55,15 +59,16 @@ function showStage(index) {
     button.classList.toggle("active", active);
     button.setAttribute("aria-pressed", String(active));
   });
+  document.querySelectorAll("[data-segment]").forEach(segment => segment.classList.toggle("is-current", Number(segment.dataset.segment) === index));
   document.getElementById("stage-count").textContent = `0${index + 1} / ${stages[index][0]}`;
   document.getElementById("stage-description").textContent = stages[index][1];
 }
 function updateLoop() {
-  const progress = (loopTime % 16000) / 16000;
+  const progress = (loopTime % cycleDuration) / cycleDuration;
   const point = loopPath.getPointAtLength(progress * loopLength);
   for (const dot of [beacon, halo]) { dot.setAttribute("cx", point.x); dot.setAttribute("cy", point.y); }
   flow.style.strokeDashoffset = String(-loopTime / 90);
-  const stage = Math.floor(progress * 5);
+  const stage = Math.floor(progress * stages.length);
   if (stage !== currentStage) showStage(stage);
 }
 function syncControls() {
@@ -81,7 +86,7 @@ playButton.addEventListener("click", () => {
 globalMotion.addEventListener("click", () => { motionPaused = !motionPaused; syncControls(); schedule(); });
 for (const button of document.querySelectorAll("[data-stage]")) button.addEventListener("click", () => {
   loopRunning = false;
-  loopTime = Number(button.dataset.stage) * 3200;
+  loopTime = Number(button.dataset.stage) * cycleDuration / stages.length;
   showStage(Number(button.dataset.stage)); updateLoop(); syncControls();
 });
 
@@ -139,9 +144,9 @@ function drawSculpture() {
     ctx.beginPath();
     face.ids.forEach((id, k) => { const p = projected[id]; if (k === 0) ctx.moveTo(p[0], p[1]); else ctx.lineTo(p[0], p[1]); });
     ctx.closePath();
-    ctx.fillStyle = `rgb(${22 + shine * 145},${23 + shine * 87},${23 + shine * 49})`;
+    ctx.fillStyle = `rgb(${18 + shine * 127},${25 + shine * 145},${15 + shine * 39})`;
     ctx.fill();
-    ctx.strokeStyle = `rgba(235,169,115,${.12 + light * .3})`;
+    ctx.strokeStyle = `rgba(217,255,67,${.14 + light * .38})`;
     ctx.lineWidth = .45;
     ctx.stroke();
   }
