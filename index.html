@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A concise team guide: shared context, engineering workflow and a focused robotics blueprint.">
+  <meta name="theme-color" content="#007e82">
+  <title>SkillForge | Team field guide</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#start">Skip to the guide</a>
+  <header class="masthead wrap">
+    <a class="wordmark" href="#"><span class="brand-mark" aria-hidden="true">s<span>f</span></span> SkillForge <span class="edition">/ TEAM FIELD GUIDE</span></a>
+    <nav aria-label="Page"><a href="#start">Start</a><a href="#workflow">Workflow</a><a href="#blueprint">Blueprint</a></nav>
+  </header>
+  <main>
+    <section class="hero wrap" aria-labelledby="title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="signal" aria-hidden="true"></span> ROBOTICS &amp; LEARNING / HACKATHON 2026</p>
+        <h1 id="title">One team.<br>One learning <span>loop.</span></h1>
+        <p class="lead">Turn demonstrations into a policy we can test, trace and improve. Start small. Make the evidence visible.</p>
+        <a class="button primary" href="#start">Get your assistant ready <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="hero-note">
+        <span class="micro">OUR WORKING AGREEMENT</span>
+        <p>Make it run.<br>Prove it works.<br><span>Then improve it.</span></p>
+        <div class="note-bottom"><span class="cross" aria-hidden="true">+</span><span>One compatible policy.<br>One reproducible learning loop.</span></div>
+      </div>
+    </section>
+
+    <section id="start" class="section wrap" aria-labelledby="start-title">
+      <div class="section-heading"><div><p class="eyebrow">01 / SHARED CONTEXT</p><h2 id="start-title">Brief your assistant.<br>Keep the context small.</h2></div><p>Open the team repository locally. Pick your task, copy the prompt, then add what you want built.</p></div>
+      <div class="prompt-workbench">
+        <div class="prompt-options" role="group" aria-label="Choose assistant context">
+          <button type="button" data-prompt="research" aria-pressed="true"><span>01</span> Pipeline &amp; research <span aria-hidden="true">↗</span></button>
+          <button type="button" data-prompt="branding" aria-pressed="false"><span>02</span> Interface &amp; design <span aria-hidden="true">↗</span></button>
+          <button type="button" data-prompt="both" aria-pressed="false"><span>03</span> Full-stack task <span aria-hidden="true">↗</span></button>
+          <p>Read the short entry first.<br>Expand only for the task at hand.</p>
+        </div>
+        <div class="prompt-content"><div class="prompt-label"><span class="micro">COPY / PASTE INTO YOUR ASSISTANT</span><span id="prompt-size" class="micro"></span></div><p id="prompt-text"></p><div class="prompt-footer"><span>Append: “My task is …”</span><button class="button copy" id="copy-prompt" type="button">Copy prompt <span aria-hidden="true">⧉</span></button></div><span id="copy-status" class="sr-only" role="status"></span></div>
+      </div>
+      <div class="branch-links"><a href="https://github.com/crystalfruit2/siemens_healthineers/tree/research" target="_blank" rel="noreferrer">research <span>Technical decisions ↗</span></a><a href="https://github.com/crystalfruit2/siemens_healthineers/tree/branding/docs/design" target="_blank" rel="noreferrer">branding <span>Design system ↗</span></a><p>Branch links require team repository access.</p></div>
+    </section>
+
+    <section id="workflow" class="workflow-section" aria-labelledby="workflow-title">
+      <div class="wrap">
+        <div class="section-heading"><div><p class="eyebrow">02 / HOW WE BUILD</p><h2 id="workflow-title">Short cycles.<br>Evidence at every handoff.</h2></div><div class="workflow-intro"><p>A lightweight iterative V-model, delivered with DevOps practices. Pair each requirement with a check; version every useful result.</p><button type="button" id="play" class="play" aria-pressed="false">Play workflow <span aria-hidden="true">▷</span></button></div></div>
+        <div class="loop" aria-label="Engineering lifecycle">
+          <div class="track" aria-hidden="true"><div id="progress"></div></div>
+          <div class="stages">
+            <button type="button" class="stage active" data-stage="0" aria-pressed="true"><span class="stage-node">01</span><strong>Define</strong><span>Requirement + check</span></button>
+            <button type="button" class="stage" data-stage="1" aria-pressed="false"><span class="stage-node">02</span><strong>Build</strong><span>Small, reviewable slice</span></button>
+            <button type="button" class="stage" data-stage="2" aria-pressed="false"><span class="stage-node">03</span><strong>Verify</strong><span>Replay + rollout evidence</span></button>
+            <button type="button" class="stage" data-stage="3" aria-pressed="false"><span class="stage-node">04</span><strong>Release</strong><span>Version + qualify</span></button>
+            <button type="button" class="stage" data-stage="4" aria-pressed="false"><span class="stage-node">05</span><strong>Learn</strong><span>Inspect failures</span></button>
+          </div>
+          <div class="return-path" aria-hidden="true"><span>← FEEDBACK INTO THE NEXT REQUIREMENT</span></div>
+        </div>
+        <div class="stage-detail"><span class="micro" id="stage-count">01 / DEFINE</span><p id="stage-description">Agree on the smallest useful behavior and the evidence that would demonstrate it.</p><span class="illustrative">Illustrative workflow · no live jobs</span></div>
+      </div>
+    </section>
+
+    <section id="blueprint" class="section wrap" aria-labelledby="blueprint-title">
+      <div class="section-heading"><div><p class="eyebrow">03 / THE BLUEPRINT</p><h2 id="blueprint-title">One honest end-to-end slice.</h2></div><p>Reuse the learning stack. Spend our effort on compatibility, evaluation and a clear demonstration.</p></div>
+      <div class="blueprint">
+        <article><span class="micro">INPUT / DATA</span><div class="diagram-icon data-icon" aria-hidden="true"><i></i><i></i><i></i></div><h3>Trust the demonstrations.</h3><p>Validate the schema, observations and actions. Replay one episode before launching training.</p><span class="artifact">dataset version + validation</span></article>
+        <span class="connector" aria-hidden="true">→</span>
+        <article><span class="micro">CORE / LEARNING</span><div class="diagram-icon policy-icon" aria-hidden="true"><i></i><i></i><i></i><i></i></div><h3>Train one compatible policy.</h3><p>Start with an existing BC or ACT implementation. Save the config and a complete reloadable checkpoint.</p><span class="artifact">run config + checkpoint</span></article>
+        <span class="connector" aria-hidden="true">→</span>
+        <article><span class="micro">OUTPUT / EVIDENCE</span><div class="diagram-icon evidence-icon" aria-hidden="true"><i></i><i></i><i></i></div><h3>Test before promoting.</h3><p>Run closed-loop simulation. Keep failure evidence and compare candidates against the incumbent.</p><span class="artifact">rollouts + release decision</span></article>
+      </div>
+      <div class="blueprint-foot"><span class="loop-symbol" aria-hidden="true">↶</span><p><strong>Next cycle:</strong> choose one observed failure, review a data or configuration change, then evaluate again. Keep the incumbent when the candidate regresses.</p></div>
+      <div class="lessons"><p class="micro">LESSONS WE CARRY FORWARD</p><div><a href="https://github.com/huggingface/lerobot" target="_blank" rel="noreferrer"><strong>Reuse the foundation ↗</strong><span>LeRobot: adapt proven training tools.</span></a><a href="https://42-ai.github.io/posts/LeRobotHackathonHighlights/" target="_blank" rel="noreferrer"><strong>Focus the demo ↗</strong><span>Prior hackathons: reliability and a clear idea.</span></a><a href="https://anniesch.github.io/demo-score/" target="_blank" rel="noreferrer"><strong>Improve with evidence ↗</strong><span>Demo-SCORE: outcome-informed data curation.</span></a></div></div>
+    </section>
+    <section class="next wrap"><span class="micro">FIRST MOVE</span><h2>Inspect the actual data.<br>Replay one demonstration.</h2><p>Confirm the simulator, observation/action contract and evaluator with the team. That unlocks every step after it.</p><a class="button primary" href="#start">Take the brief with you <span aria-hidden="true">↑</span></a></section>
+  </main>
+  <footer class="wrap"><span>SkillForge / Independent hackathon team guide</span><span>Proposed blueprint. No training results claimed.</span><a href="https://github.com/ibrahimify/siemens-hackathon-guide">Page source ↗</a></footer>
+</body>
+</html>
