@@ -1,81 +1,73 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A concise team guide: shared context, engineering workflow and a focused robotics blueprint.">
-  <meta name="theme-color" content="#007e82">
-  <title>SkillForge | Team field guide</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0b0c0d">
+  <meta name="description" content="TALOS. A shared direction for our robotics team: the brief, the learning loop and the blueprint.">
+  <title>TALOS | Team manual</title>
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
 </head>
 <body>
-  <a class="skip" href="#start">Skip to the guide</a>
-  <header class="masthead wrap">
-    <a class="wordmark" href="#"><span class="brand-mark" aria-hidden="true">s<span>f</span></span> SkillForge <span class="edition">/ TEAM FIELD GUIDE</span></a>
-    <nav aria-label="Page"><a href="#start">Start</a><a href="#workflow">Workflow</a><a href="#blueprint">Blueprint</a></nav>
+  <a class="skip" href="#start">Skip to the brief</a>
+  <header class="masthead shell">
+    <a href="#top" class="wordmark" aria-label="TALOS home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 6h24M16 6v22M7 12h18M11 18h10"/></svg>TALOS<span>ROBOTICS / 2026</span></a>
+    <nav aria-label="Main navigation"><a href="#workflow">The loop <span>01</span></a><a href="#blueprint">The build <span>02</span></a><a href="#start" class="nav-brief">Get the brief <span aria-hidden="true">↗</span></a></nav>
   </header>
   <main>
-    <section class="hero wrap" aria-labelledby="title">
-      <div class="hero-copy">
-        <p class="eyebrow"><span class="signal" aria-hidden="true"></span> ROBOTICS &amp; LEARNING / HACKATHON 2026</p>
-        <h1 id="title">One team.<br>One learning <span>loop.</span></h1>
-        <p class="lead">Turn demonstrations into a policy we can test, trace and improve. Start small. Make the evidence visible.</p>
-        <a class="button primary" href="#start">Get your assistant ready <span aria-hidden="true">↗</span></a>
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-top shell"><p class="mono"><span class="status-dot"></span> SIX MINDS. ONE DIRECTION.</p><p class="mono">ROBOTICS &amp; LEARNING<br>INDEPENDENT HACKATHON TEAM</p></div>
+      <div class="hero-art" aria-hidden="true">
+        <svg class="art-fallback" viewBox="0 0 700 600"><g fill="none" stroke="#bd774d" stroke-width=".7"><ellipse cx="350" cy="300" rx="250" ry="105" transform="rotate(-35 350 300)"/><ellipse cx="350" cy="300" rx="230" ry="135" transform="rotate(35 350 300)"/><ellipse cx="350" cy="300" rx="145" ry="250" transform="rotate(-35 350 300)"/></g></svg>
+        <canvas id="sculpture"></canvas>
+        <div class="art-coordinate coord-left">HUMAN INTENT<br><span>INPUT ↗</span></div><div class="art-coordinate coord-right">LEARNED BEHAVIOR<br><span>↙ OUTPUT</span></div>
       </div>
-      <div class="hero-note">
-        <span class="micro">OUR WORKING AGREEMENT</span>
-        <p>Make it run.<br>Prove it works.<br><span>Then improve it.</span></p>
-        <div class="note-bottom"><span class="cross" aria-hidden="true">+</span><span>One compatible policy.<br>One reproducible learning loop.</span></div>
-      </div>
+      <h1 id="hero-title" class="hero-title" aria-label="TALOS"><span aria-hidden="true">T</span><span aria-hidden="true">A</span><span aria-hidden="true">L</span><span aria-hidden="true">O</span><span aria-hidden="true">S</span></h1>
+      <div class="hero-bottom shell"><p>From demonstration<br>to <em>capability.</em></p><div class="hero-caption"><p>Named for the bronze guardian.<br>Built around a learning loop.</p><a class="text-link" href="#start">Brief your assistant <span aria-hidden="true">↗</span></a></div><a class="scroll-cue mono" href="#workflow">EXPLORE THE SYSTEM <span aria-hidden="true">↓</span></a></div>
+      <button id="motion-toggle" class="motion-toggle mono" type="button" aria-pressed="false">PAUSE MOTION <span aria-hidden="true">Ⅱ</span></button>
     </section>
 
-    <section id="start" class="section wrap" aria-labelledby="start-title">
-      <div class="section-heading"><div><p class="eyebrow">01 / SHARED CONTEXT</p><h2 id="start-title">Brief your assistant.<br>Keep the context small.</h2></div><p>Open the team repository locally. Pick your task, copy the prompt, then add what you want built.</p></div>
-      <div class="prompt-workbench">
-        <div class="prompt-options" role="group" aria-label="Choose assistant context">
-          <button type="button" data-prompt="research" aria-pressed="true"><span>01</span> Pipeline &amp; research <span aria-hidden="true">↗</span></button>
-          <button type="button" data-prompt="branding" aria-pressed="false"><span>02</span> Interface &amp; design <span aria-hidden="true">↗</span></button>
-          <button type="button" data-prompt="both" aria-pressed="false"><span>03</span> Full-stack task <span aria-hidden="true">↗</span></button>
-          <p>Read the short entry first.<br>Expand only for the task at hand.</p>
-        </div>
-        <div class="prompt-content"><div class="prompt-label"><span class="micro">COPY / PASTE INTO YOUR ASSISTANT</span><span id="prompt-size" class="micro"></span></div><p id="prompt-text"></p><div class="prompt-footer"><span>Append: “My task is …”</span><button class="button copy" id="copy-prompt" type="button">Copy prompt <span aria-hidden="true">⧉</span></button></div><span id="copy-status" class="sr-only" role="status"></span></div>
-      </div>
-      <div class="branch-links"><a href="https://github.com/crystalfruit2/siemens_healthineers/tree/research" target="_blank" rel="noreferrer">research <span>Technical decisions ↗</span></a><a href="https://github.com/crystalfruit2/siemens_healthineers/tree/branding/docs/design" target="_blank" rel="noreferrer">branding <span>Design system ↗</span></a><p>Branch links require team repository access.</p></div>
+    <section id="workflow" class="workflow section shell" aria-labelledby="workflow-title">
+      <div class="section-meta"><span class="mono">01 / THE LOOP</span><span class="mono">ITERATIVE V-MODEL + DEVOPS</span></div>
+      <div class="workflow-layout"><div class="workflow-copy"><h2 data-reveal>Build.<br>Prove.<br><em>Repeat.</em></h2><p class="body-copy">A requirement and a check.<br>A small slice and real evidence.<br>One better decision next time.</p><button id="play" class="round-control" type="button" aria-pressed="true"><span class="control-icon" aria-hidden="true">Ⅱ</span><span id="play-label">Pause the loop</span></button><p class="footnote">Illustrative lifecycle, not live training.</p></div>
+      <div class="loop-system" data-reveal>
+        <div class="loop-top mono"><span>CONTINUOUS LEARNING SYSTEM</span><span id="stage-count">01 / DEFINE</span></div>
+        <svg class="loop-visual" viewBox="0 0 880 480" aria-hidden="true">
+          <defs><linearGradient id="loop-gradient" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b26338"/><stop offset=".5" stop-color="#ffd0a7"/><stop offset="1" stop-color="#7aafac"/></linearGradient><filter id="beacon-glow"><feGaussianBlur stdDeviation="4"/></filter></defs>
+          <g class="diagram-grid"><path d="M40 120H840M40 240H840M40 360H840M220 30V450M440 30V450M660 30V450"/></g>
+          <path class="loop-shadow" d="M440 240C300 50 70 70 70 240S300 430 440 240S810 50 810 240S580 430 440 240"/>
+          <path id="loop-path" class="loop-line" d="M440 240C300 50 70 70 70 240S300 430 440 240S810 50 810 240S580 430 440 240"/>
+          <path class="loop-flow" d="M440 240C300 50 70 70 70 240S300 430 440 240S810 50 810 240S580 430 440 240"/>
+          <circle id="beacon-halo" r="12" fill="#efad79" opacity=".6" filter="url(#beacon-glow)" cx="440" cy="240"/><circle id="beacon" r="4.5" fill="#ffe5ca" cx="440" cy="240"/>
+          <text x="235" y="243" class="diagram-label">DEVELOP</text><text x="647" y="243" class="diagram-label">OPERATE</text><text x="440" y="436" class="diagram-small">EVIDENCE RETURNS TO THE NEXT REQUIREMENT</text>
+        </svg>
+        <div class="stage-nav" role="group" aria-label="Inspect a workflow stage"><button data-stage="0" class="active" aria-pressed="true"><span>01</span>Define</button><button data-stage="1" aria-pressed="false"><span>02</span>Build</button><button data-stage="2" aria-pressed="false"><span>03</span>Verify</button><button data-stage="3" aria-pressed="false"><span>04</span>Release</button><button data-stage="4" aria-pressed="false"><span>05</span>Learn</button></div>
+        <p id="stage-description" class="stage-description">Agree on the smallest useful behavior and the evidence that would demonstrate it.</p>
+      </div></div>
     </section>
 
-    <section id="workflow" class="workflow-section" aria-labelledby="workflow-title">
-      <div class="wrap">
-        <div class="section-heading"><div><p class="eyebrow">02 / HOW WE BUILD</p><h2 id="workflow-title">Short cycles.<br>Evidence at every handoff.</h2></div><div class="workflow-intro"><p>A lightweight iterative V-model, delivered with DevOps practices. Pair each requirement with a check; version every useful result.</p><button type="button" id="play" class="play" aria-pressed="false">Play workflow <span aria-hidden="true">▷</span></button></div></div>
-        <div class="loop" aria-label="Engineering lifecycle">
-          <div class="track" aria-hidden="true"><div id="progress"></div></div>
-          <div class="stages">
-            <button type="button" class="stage active" data-stage="0" aria-pressed="true"><span class="stage-node">01</span><strong>Define</strong><span>Requirement + check</span></button>
-            <button type="button" class="stage" data-stage="1" aria-pressed="false"><span class="stage-node">02</span><strong>Build</strong><span>Small, reviewable slice</span></button>
-            <button type="button" class="stage" data-stage="2" aria-pressed="false"><span class="stage-node">03</span><strong>Verify</strong><span>Replay + rollout evidence</span></button>
-            <button type="button" class="stage" data-stage="3" aria-pressed="false"><span class="stage-node">04</span><strong>Release</strong><span>Version + qualify</span></button>
-            <button type="button" class="stage" data-stage="4" aria-pressed="false"><span class="stage-node">05</span><strong>Learn</strong><span>Inspect failures</span></button>
-          </div>
-          <div class="return-path" aria-hidden="true"><span>← FEEDBACK INTO THE NEXT REQUIREMENT</span></div>
-        </div>
-        <div class="stage-detail"><span class="micro" id="stage-count">01 / DEFINE</span><p id="stage-description">Agree on the smallest useful behavior and the evidence that would demonstrate it.</p><span class="illustrative">Illustrative workflow · no live jobs</span></div>
+    <section id="blueprint" class="blueprint section shell" aria-labelledby="blueprint-title">
+      <div class="section-meta"><span class="mono">02 / THE BUILD</span><span class="mono">ONE END-TO-END SLICE</span></div>
+      <div class="blueprint-heading"><h2 data-reveal>Less machinery.<br><em>More evidence.</em></h2><p class="body-copy">Reuse the learning stack.<br>Make the interfaces work.<br>Demonstrate the actual result.</p></div>
+      <div class="build-rows">
+        <article class="build-row" data-reveal><span class="build-number">01</span><div><span class="mono">DATA / THE FOUNDATION</span><h3>Trust the input.</h3></div><p>Validate observations and actions.<br>Replay one demonstration before training.</p><span class="artifact mono">DATASET + VALIDATION</span></article>
+        <article class="build-row" data-reveal><span class="build-number">02</span><div><span class="mono">POLICY / THE CORE</span><h3>Train one thing well.</h3></div><p>Start with compatible BC or ACT.<br>Save a complete reloadable checkpoint.</p><span class="artifact mono">CONFIG + CHECKPOINT</span></article>
+        <article class="build-row" data-reveal><span class="build-number">03</span><div><span class="mono">EVALUATION / THE PROOF</span><h3>Earn the release.</h3></div><p>Run closed-loop simulation.<br>Compare the candidate with the incumbent.</p><span class="artifact mono">ROLLOUTS + DECISION</span></article>
       </div>
+      <div class="feedback"><span aria-hidden="true">↶</span><p>One observed failure. One reviewed change. Evaluate again.<br><strong>Keep the incumbent if the candidate regresses.</strong></p></div>
+      <div class="references"><span class="mono">RESEARCH TO BUILD ON</span><a href="https://github.com/huggingface/lerobot" target="_blank" rel="noreferrer">LeRobot <span>Reuse the trainer ↗</span></a><a href="https://42-ai.github.io/posts/LeRobotHackathonHighlights/" target="_blank" rel="noreferrer">Previous hackathons <span>Focus the demo ↗</span></a><a href="https://anniesch.github.io/demo-score/" target="_blank" rel="noreferrer">Demo-SCORE <span>Curate with outcomes ↗</span></a></div>
     </section>
 
-    <section id="blueprint" class="section wrap" aria-labelledby="blueprint-title">
-      <div class="section-heading"><div><p class="eyebrow">03 / THE BLUEPRINT</p><h2 id="blueprint-title">One honest end-to-end slice.</h2></div><p>Reuse the learning stack. Spend our effort on compatibility, evaluation and a clear demonstration.</p></div>
-      <div class="blueprint">
-        <article><span class="micro">INPUT / DATA</span><div class="diagram-icon data-icon" aria-hidden="true"><i></i><i></i><i></i></div><h3>Trust the demonstrations.</h3><p>Validate the schema, observations and actions. Replay one episode before launching training.</p><span class="artifact">dataset version + validation</span></article>
-        <span class="connector" aria-hidden="true">→</span>
-        <article><span class="micro">CORE / LEARNING</span><div class="diagram-icon policy-icon" aria-hidden="true"><i></i><i></i><i></i><i></i></div><h3>Train one compatible policy.</h3><p>Start with an existing BC or ACT implementation. Save the config and a complete reloadable checkpoint.</p><span class="artifact">run config + checkpoint</span></article>
-        <span class="connector" aria-hidden="true">→</span>
-        <article><span class="micro">OUTPUT / EVIDENCE</span><div class="diagram-icon evidence-icon" aria-hidden="true"><i></i><i></i><i></i></div><h3>Test before promoting.</h3><p>Run closed-loop simulation. Keep failure evidence and compare candidates against the incumbent.</p><span class="artifact">rollouts + release decision</span></article>
-      </div>
-      <div class="blueprint-foot"><span class="loop-symbol" aria-hidden="true">↶</span><p><strong>Next cycle:</strong> choose one observed failure, review a data or configuration change, then evaluate again. Keep the incumbent when the candidate regresses.</p></div>
-      <div class="lessons"><p class="micro">LESSONS WE CARRY FORWARD</p><div><a href="https://github.com/huggingface/lerobot" target="_blank" rel="noreferrer"><strong>Reuse the foundation ↗</strong><span>LeRobot: adapt proven training tools.</span></a><a href="https://42-ai.github.io/posts/LeRobotHackathonHighlights/" target="_blank" rel="noreferrer"><strong>Focus the demo ↗</strong><span>Prior hackathons: reliability and a clear idea.</span></a><a href="https://anniesch.github.io/demo-score/" target="_blank" rel="noreferrer"><strong>Improve with evidence ↗</strong><span>Demo-SCORE: outcome-informed data curation.</span></a></div></div>
+    <section id="start" class="brief section shell" aria-labelledby="brief-title">
+      <div class="section-meta"><span class="mono">03 / THE BRIEF</span><span class="mono">SMALL CONTEXT. SHARED DIRECTION.</span></div>
+      <div class="brief-heading"><h2 data-reveal>Your assistant.<br><em>Our context.</em></h2><p class="body-copy">Choose a task. Copy the prompt.<br>Add what you need built.<br>Only read further when necessary.</p></div>
+      <div class="prompt-workbench" data-reveal><div class="prompt-options" role="group" aria-label="Choose assistant context"><button data-prompt="research" aria-pressed="true"><span>01</span>Pipeline &amp; research<span aria-hidden="true">↗</span></button><button data-prompt="branding" aria-pressed="false"><span>02</span>Interface &amp; design<span aria-hidden="true">↗</span></button><button data-prompt="both" aria-pressed="false"><span>03</span>Full-stack task<span aria-hidden="true">↗</span></button></div><div class="prompt-content"><div class="prompt-label mono"><span>PASTE INTO CHATGPT / CODEX / CLAUDE</span><span id="prompt-size"></span></div><p id="prompt-text">In the team repo, fetch origin once. Read origin/research:docs/research/START_HERE.md using git show. Open only task-relevant details. Preserve teammates' changes and verify your work. My task is:</p><div class="prompt-footer"><span class="mono">SHORT ENTRY FIRST. DETAILS ON DEMAND.</span><button id="copy-prompt" class="copy-button" type="button"><span>Copy prompt</span><span aria-hidden="true">↗</span></button></div><p id="copy-status" class="sr-only" role="status"></p></div></div>
+      <div class="branch-links"><a href="https://github.com/crystalfruit2/siemens_healthineers/tree/research" target="_blank" rel="noreferrer"><span class="mono">TECHNICAL DECISIONS</span>research <span aria-hidden="true">↗</span></a><a href="https://github.com/crystalfruit2/siemens_healthineers/tree/branding/docs/design" target="_blank" rel="noreferrer"><span class="mono">DESIGN DIRECTION</span>branding <span aria-hidden="true">↗</span></a><p>Open your local team repo first.<br>Branch links require repository access.</p></div>
     </section>
-    <section class="next wrap"><span class="micro">FIRST MOVE</span><h2>Inspect the actual data.<br>Replay one demonstration.</h2><p>Confirm the simulator, observation/action contract and evaluator with the team. That unlocks every step after it.</p><a class="button primary" href="#start">Take the brief with you <span aria-hidden="true">↑</span></a></section>
+    <section class="closing shell"><span class="mono">THE NEXT MOVE</span><h2 data-reveal>Before a long run,<br><em>replay one demo.</em></h2><a href="#start" class="closing-link" aria-label="Return to assistant prompts">↗</a><p>Confirm the data contract, simulator and evaluator.<br>Everything else starts there.</p></section>
   </main>
-  <footer class="wrap"><span>SkillForge / Independent hackathon team guide</span><span>Proposed blueprint. No training results claimed.</span><a href="https://github.com/ibrahimify/siemens-hackathon-guide">Page source ↗</a></footer>
+  <footer class="shell"><a class="footer-brand" href="#top">TALOS</a><p>Alp Eldam · Ege Tugay · Kerem Ozkan<br>Muhammad Ibrahim Shoeb · Jiaqi Guo · Laetitia Carli</p><div><span>Independent team. Proposed blueprint.</span><a href="https://github.com/ibrahimify/talos">Source ↗</a></div></footer>
 </body>
 </html>
