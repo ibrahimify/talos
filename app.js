@@ -1,9 +1,9 @@
-﻿"use strict";
+"use strict";
 const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
 const prompts = {
-  research: "In the team repo, fetch origin once. Read origin/research:docs/research/START_HERE.md using git show. Open only task-relevant details, not the full report. Preserve teammates' changes and verify the smallest useful slice. My task is: ",
-  branding: "In the team repo, fetch origin once. Read origin/branding:docs/design/START_HERE.md using git show. Open only task-relevant design files. Follow TALOS direction, reuse tokens and motion rules, preserve teammates' changes and verify the result. My task is: ",
-  both: "In the team repo, fetch origin once. Use git show to read docs/research/START_HERE.md from origin/research and docs/design/START_HERE.md from origin/branding. Open only task-relevant details. Skip full reports and archives. Preserve teammates' changes and verify the smallest useful slice. My task is: "
+  research: "Work in the private team repo. Check local instructions and git status; preserve teammates' changes. Run git fetch origin once, then git show origin/research:docs/research/START_HERE.md. Follow the brief; open only task-relevant details. If repo access is unavailable, say so. Implement and verify the smallest useful slice. My task is: ",
+  branding: "Work in the private team repo. Check local instructions and git status; preserve teammates' changes. Run git fetch origin once, then git show origin/branding:docs/design/START_HERE.md. Follow the correct TALOS surface and open only task-relevant files. If repo access is unavailable, say so. Implement and verify the result. My task is: ",
+  both: "Work in the private team repo. Check local instructions and git status; preserve teammates' changes. Run git fetch origin once. Read git show origin/research:docs/research/START_HERE.md and git show origin/branding:docs/design/START_HERE.md. Follow both briefs; open only task-relevant details, not full reports. If repo access is unavailable, say so. Implement and verify. My task is: "
 };
 const promptText = document.getElementById("prompt-text");
 const copyButton = document.getElementById("copy-prompt");
