@@ -214,6 +214,7 @@
     const my = token;
     const slide = slides[cur];
     animate = animate && !reduced;
+    stage.dataset.motion = animate ? 'play' : 'still';
     if (!animate) stage.classList.add('instant');
     slides.forEach((x, i) => x.classList.toggle('active', i === cur));
     slide.querySelectorAll('[data-step]').forEach(el => el.classList.toggle('on', step >= +el.dataset.step));

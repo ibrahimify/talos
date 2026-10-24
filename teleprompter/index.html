@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#0A0A0A">
 <title>TALOS teleprompter</title>
 <style>
-  :root { --bg: #0A0A0A; --ink: #F5F3EE; --red: #CC0000; --dim: rgba(245,243,238,.45); --line: rgba(245,243,238,.14);
+  :root { --bg: #0A0A0A; --ink: #F5F3EE; --red: #FF4B40; --dim: rgba(245,243,238,.45); --line: rgba(245,243,238,.14);
     --mono: Consolas, Menlo, "Courier New", monospace; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; background: var(--bg); color: var(--ink); }
@@ -51,86 +51,85 @@
 // [title, start s, end s, lines]. "→" starts a line where you press the key on the deck; [..] is a stage direction.
 const SLIDES = [
   [
-    "The learning workflow",
+    "Our robot in numbers",
     0,
     40,
     [
-      "[Start on slide 1] TALOS helps engineers teach and test robot skills. Equipment handling motivates the work. These numbers explain what we built.",
-      "→ Five stages connect demonstrations to a served robot policy.",
-      "→ Thirty scenarios let us compare versions.",
-      "→ Eighty-four supplied episodes repeated one robot movement.",
-      "→ Our selected model used one hundred fourteen generated demonstrations.",
-      "→ Its placement score rose from thirteen to fifty percent.",
-      "→ [Pause] We built and tested this in simulation."
+      "[Start on slide 1] Do you know what these numbers mean? This is how we taught and tested our robot.",
+      "→ Five connected steps.",
+      "→ Thirty scenarios to compare our models.",
+      "→ Eighty-four demonstrations, but the same robot movement.",
+      "→ A dataset of one hundred fourteen demonstrations for our chosen model.",
+      "→ Four boxes placed became fifteen out of thirty.",
+      "→ [Pause] Generated in simulation. Trained and tested."
     ],
     "Alp Eldam"
   ],
   [
-    "Failure, retraining and comparison",
+    "It fails. It learns. It adapts.",
     40,
     60,
     [
-      "We wanted to make the next experiment clearer when the robot fails.",
-      "→ Our diagnostics suggest additional demonstrations. A scripted expert generates them, and we run training.",
-      "→ We compare the new model with the previous one and decide which to keep. Here is the result."
+      "It fails. We inspect what went wrong.",
+      "→ It learns. We generate more examples and retrain the model.",
+      "→ It adapts. We compare the versions and choose which to keep. We run this process ourselves."
     ],
     "Alp Eldam"
   ],
   [
-    "Recorded placement comparison",
+    "The robot comparison",
     60,
     80,
     [
-      "[Let the 10-second clip play] These are recorded action replays of the same scenario, seven and a half times faster.",
-      "On the left, round one misses the grasp. On the right, round two places the box on the tray. This illustrates placement, not proof of a complete handover."
+      "[Speak while the clip plays] This is a recorded replay. Same scenario, same start, replayed faster.",
+      "Left, our first model misses the grasp. Right, the next model puts the box on the tray. That is the placement result we measure here."
     ],
     "Alp Eldam"
   ],
   [
-    "The five-stage stack",
+    "How does it work?",
     80,
     150,
     [
-      "Here is how we connected the stack.",
-      "→ We ingest demonstrations, check their quality, train with LeRobot ACT, evaluate in Isaac Sim and serve the saved policy. ACT learns movement sequences from images and robot state. We chose it because it fitted the interface and let us test the full workflow.",
-      "→ Diagnostics suggest further data collection. People run generation and retraining.",
-      "→ A comparison gate supports our selection. We still need to connect all quality checks to training and deployment.",
-      "→ Each square is one of thirty scenarios. Round one placed four boxes.",
-      "→ After changing the data and training for longer, round two placed fifteen. Twelve scenarios improved and one regressed. The score checks final placement. These scenarios also informed development.",
-      "→ Round three fell to twelve, so we kept round two. More training does not guarantee a better robot."
+      "So how does it work?",
+      "→ Demonstrations come in. We check the data, train ACT, test it in Isaac Sim, and load the model to control the robot. ACT learns movements from camera images and the robot's position.",
+      "→ When it fails, our tools suggest what new examples to try. Our scripted expert generates them, and we run training.",
+      "→ We compare the results and choose which model to keep.",
+      "→ Here are the thirty scenarios. Round one: four boxes placed.",
+      "→ Round two: fifteen. Twelve got better, one got worse. This is what we are proudest of. We changed both the data and training time, and used these scenarios during development.",
+      "→ Round three got worse, so we kept round two."
     ],
     "Alp Eldam"
   ],
   [
-    "Hospital motivation and an extension",
+    "A hospital example",
     150,
     185,
     [
-      "The challenge motivates equipment handling in clinical settings. We also explored instrument accountability.",
-      "→ Our research corpus includes fourteen hundred ninety-seven public FDA reports. That count describes the corpus, not how common a problem is.",
-      "→ Contact tracking and counting became a separate prototype.",
-      "→ One published study found count discrepancies during nineteen of one hundred forty-eight operations. That motivates assistance. We have not measured clinical benefit."
+      "Robotic equipment handling could support busy hospital teams. We also explored keeping track of instruments.",
+      "→ We collected nearly fifteen hundred public FDA reports to help us understand the problems.",
+      "→ Counting instruments and flagging hand contact became a separate demo.",
+      "→ One study found counting problems during roughly one in eight operations. That is why this matters."
     ],
     "Alp Eldam"
   ],
   [
-    "Contact and counting prototype",
+    "Counting and contact",
     185,
     205,
     [
-      "[Let the video play] The prototype counts two pairs of scissors and flags detected hand contact. The flag stays on for review.",
-      "The colour records a contact rule. It cannot determine biological sterility. A trained person would still make that judgement."
+      "[Speak while the video plays] The tool counts two pairs of scissors. When it spots possible hand contact, they turn red and stay flagged for review.",
+      "That warns of contact. It does not prove something is sterile."
     ],
     "Alp Eldam"
   ],
   [
-    "Next steps",
+    "What comes next",
     205,
     240,
     [
-      "Next, we need better camera inputs and more varied demonstrations. We then need a fresh test set and a success check for the whole handover.",
-      "We trained the ACT control policy from scratch. Testing a pretrained robot model is another next step. Real hardware would need calibration, recovery and supervised validation.",
-      "→ TALOS gives engineers a way to inspect data, compare robot skills and decide what to try next. Scan the code for our team guide and project links. We are TALOS."
+      "Next: better camera inputs, more varied demonstrations, and a fresh test of the whole handover. Then we can test a pretrained model and work towards real hardware.",
+      "→ We built a learning loop that helps us improve a robot, and see when it still struggles. Scan the code for everything we have shared. We are TALOS."
     ],
     "Alp Eldam"
   ]
