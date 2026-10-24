@@ -5,6 +5,7 @@
  *   [data-only="k"]  gets .on only at step k,
  *   scenes[data-scene].render(...) handles counts, the travelling dot and the grid.
  * Moving forward by one step animates; anything else (back, jumps, reload) snaps to the final state.
+ * A slide with data-auto="ms" plays all its steps from one key press (see autoplay()).
  * A slide marked data-optional is skipped when its video cannot be loaded (e.g. not published).
  *
  * Keys: → Space PgDn Enter = next · ← PgUp Backspace = back · Home/End · F fullscreen · N notes · B blank · R restart
@@ -170,10 +171,6 @@
   const demo = document.getElementById('demo');
   scenes.demo = playOnEnter(demo, demo.closest('.slide'));
 
-  scenes.close = {
-    render(slide, s) { slide.querySelector('#rows').classList.toggle('away', s >= 1); },
-  };
-
   // ---------- optional slides ----------
   // A slide with data-optional is shown only once its video can play; if it fails to load it is skipped.
   const optionalReady = slides.filter(s => s.hasAttribute('data-optional')).map(s => {
@@ -193,13 +190,32 @@
   function toggleAppendix() {
     if (appendixIndex < 0) return;
     const prev = cur;
-    if (returnTo) { [cur, step] = returnTo; returnTo = null; }
+    clearTimeout(autoTimer);
+    if (returnTo) { [cur, step] = returnTo; returnTo = null; if (autoMs(cur)) step = stepsOf(cur) - 1; }
     else { returnTo = [cur, step]; cur = appendixIndex; step = 0; }
     render(false, prev);
   }
 
   // ---------- core ----------
   const stepsOf = i => +slides[i].dataset.steps || 1;
+
+  // A slide with data-auto="ms" plays all its steps from one key press, one step every ms.
+  // The next press leaves the slide; arriving any other way (back, jump, reload) shows its finished state.
+  const autoMs = i => +slides[i].dataset.auto || 0;
+  let autoTimer = 0;
+  function autoplay() {
+    clearTimeout(autoTimer);
+    if (!autoMs(cur)) return;
+    if (reduced) { step = stepsOf(cur) - 1; return render(false, cur); }
+    const here = cur;
+    const tick = () => {
+      if (cur !== here || returnTo || step >= stepsOf(cur) - 1) return;
+      step++;
+      render(true, cur);
+      if (step < stepsOf(cur) - 1) autoTimer = setTimeout(tick, autoMs(cur));
+    };
+    autoTimer = setTimeout(tick, autoMs(cur));
+  }
 
   function render(animate, prev) {
     token++;
@@ -223,9 +239,11 @@
 
   function go(dir) {
     if (returnTo) return toggleAppendix();  // any arrow leaves the fine print, back where you were
+    clearTimeout(autoTimer);
     const prev = cur;
+    const auto = autoMs(cur) > 0;
     if (dir > 0) {
-      if (step < stepsOf(cur) - 1) step++;
+      if (!auto && step < stepsOf(cur) - 1) step++;
       else {
         let i = cur + 1;
         while (i < slides.length && !usable(i)) i++;
@@ -233,8 +251,9 @@
         cur = i; step = 0;
       }
       render(true, prev);
+      if (cur !== prev) autoplay();
     } else {
-      if (step > 0) step--;
+      if (!auto && step > 0) step--;
       else {
         let i = cur - 1;
         while (i >= 0 && !usable(i)) i--;
@@ -254,7 +273,8 @@
     while (i < slides.length && !usable(i)) i++;
     if (i >= slides.length) { i = cur; while (i > 0 && !usable(i)) i--; }
     cur = i;
-    step = Math.max(0, Math.min(stepsOf(cur) - 1, s));
+    step = autoMs(cur) ? stepsOf(cur) - 1 : Math.max(0, Math.min(stepsOf(cur) - 1, s));
+    clearTimeout(autoTimer);
     render(false, prev);
   }
 

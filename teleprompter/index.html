@@ -49,6 +49,7 @@
 </footer>
 <script>
 // [title, start s, end s, lines]. "→" starts a line where you press the key on the deck; [..] is a stage direction.
+// The numbers, hospital and "It fails" slides play by themselves after one press, so they have no "→".
 const SLIDES = [
   [
     "The problem",
@@ -65,30 +66,19 @@ const SLIDES = [
     46,
     [
       "Do you know what these numbers mean?",
-      "→ At least five nurses we called.",
-      "→ Nearly fifteen hundred public FDA reports we scanned.",
-      "→ Eighty-four demonstrations, but the same robot movement.",
-      "→ One hundred seventy-three demonstrations generated in simulation.",
-      "→ Thirteen to fifty percent: boxes placed on the tray, before and after retraining, on the same thirty scenarios.",
-      "→ [Pause] Built on site. Tested in simulation."
-    ],
-    "Alp Eldam"
-  ],
-  [
-    "It fails. It learns. It adapts.",
-    46,
-    66,
-    [
-      "It fails. We inspect what went wrong.",
-      "→ It learns. We generate more examples and retrain the model.",
-      "→ It adapts. We compare the versions and choose which to keep. We run this process ourselves."
+      "At least five nurses we called.",
+      "Nearly fifteen hundred public FDA reports we scanned.",
+      "Eighty-four demonstrations, but the same robot movement.",
+      "One hundred seventy-three demonstrations generated in simulation.",
+      "Thirteen to fifty percent: boxes placed on the tray, before and after retraining, on the same thirty scenarios.",
+      "[Pause] Built on site. Tested in simulation."
     ],
     "Alp Eldam"
   ],
   [
     "The robot comparison",
+    46,
     66,
-    86,
     [
       "[Speak while the clip plays] This is a recorded replay. Same scenario, same start, replayed faster.",
       "Left, our first model misses the grasp. Right, the next model puts the box on the tray. That is the placement result we measure here."
@@ -97,8 +87,8 @@ const SLIDES = [
   ],
   [
     "How does it work?",
-    86,
-    156,
+    66,
+    136,
     [
       "So how does it work?",
       "→ Demonstrations come in. We check the data, train ACT, test it in Isaac Sim, and load the model to control the robot. ACT learns movements from camera images and the robot's position.",
@@ -112,20 +102,20 @@ const SLIDES = [
   ],
   [
     "A hospital example",
-    156,
-    191,
+    136,
+    171,
     [
       "We called nurses to understand their work. Alongside robot learning, we built two features for the operating room.",
-      "→ One: counting. The camera counts the instruments in view.",
-      "→ Two: sterility. It warns when a hand may have touched a sterile instrument.",
-      "→ We collected nearly fifteen hundred public FDA reports to understand the problems, and one study found counting problems during roughly one in eight operations."
+      "One: counting. The camera counts the instruments in view.",
+      "Two: sterility. It warns when a hand may have touched a sterile instrument.",
+      "We collected nearly fifteen hundred public FDA reports to understand the problems, and one study found counting problems during roughly one in eight operations."
     ],
     "Alp Eldam"
   ],
   [
     "Instrument demo",
+    171,
     191,
-    211,
     [
       "[Speak while the video plays] The camera counts two pairs of scissors. It flags a possible touch for review.",
       "The red colour is a warning. It cannot tell us whether something is truly sterile."
@@ -134,11 +124,30 @@ const SLIDES = [
   ],
   [
     "What comes next",
-    211,
+    191,
+    213,
+    [
+      "Next: in-and-out counting. Count every instrument before and after surgery, so nothing stays inside the patient. Nurses told us this count takes much of their time. And new test scenarios for the full handover."
+    ],
+    "Alp Eldam"
+  ],
+  [
+    "It fails. It learns. It adapts.",
+    213,
+    233,
+    [
+      "It fails. We inspect what went wrong.",
+      "It learns. We generate more examples and retrain the model.",
+      "It adapts. We compare the versions and choose which to keep. We run this process ourselves."
+    ],
+    "Alp Eldam"
+  ],
+  [
+    "We are TALOS",
+    233,
     246,
     [
-      "Next: in-and-out counting. Count every instrument before and after surgery, so nothing stays inside the patient. Nurses told us this count takes much of their time. And new test scenarios for the full handover.",
-      "→ We built a learning loop that helps us improve a robot, and see when it still struggles. Scan here for our code, documentation and findings. We are TALOS."
+      "We built a learning loop that helps us improve a robot, and see when it still struggles. Scan here for our code, documentation and findings. We are TALOS."
     ],
     "Alp Eldam"
   ]
