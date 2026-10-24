@@ -95,9 +95,9 @@ body.idle { cursor: none; }
 
 /* ---------- FINE PRINT (appendix, key A only) ---------- */
 .s-appendix .rows { position: absolute; left: var(--m); right: var(--m); top: 190px; }
-.s-appendix .row { display: grid; grid-template-columns: 90px 1fr; padding: 26px 0; border-top: 2px solid var(--faint); }
+.s-appendix .row { display: grid; grid-template-columns: 90px 1fr; padding: 20px 0; border-top: 2px solid var(--faint); }
 .s-appendix .row b { font-family: var(--mono); font-size: 30px; color: var(--red); font-weight: 500; padding-top: 8px; }
-.s-appendix .row span { font-size: 46px; font-weight: 700; letter-spacing: -.02em; line-height: 1.2; }
+.s-appendix .row span { font-size: 42px; font-weight: 700; letter-spacing: -.02em; line-height: 1.2; }
 
 /* ---------- HOW ---------- */
 .s-how .how { position: absolute; left: var(--edge); bottom: 48px; font-size: 220px; font-weight: 900; letter-spacing: -.05em; line-height: 1; }
@@ -190,3 +190,6 @@ body.idle { cursor: none; }
 #notes.show { display: block; }
 #blank { position: fixed; inset: 0; background: var(--bg); z-index: 70; display: none; }
 #blank.show { display: block; }
+
+.s-demo .scope { position: absolute; left: 0; right: 0; top: 1005px; text-align: center; font: 28px var(--mono); color: var(--dim); }
+.s-nurses .foot a { color: inherit; }

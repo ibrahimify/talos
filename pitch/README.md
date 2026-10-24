@@ -1,4 +1,4 @@
-# TALOS — finals pitch
+# TALOS finals pitch
 
 The 4-minute final pitch of team TALOS, Siemens Healthineers Hackathon 2026, Challenge 2.
 A single web page that works like PowerPoint.
@@ -25,6 +25,9 @@ returns to exactly the same step. Going back always shows the finished state of 
 `teleprompter/index.html`: the word-for-word script per slide with a 4:00 clock and per-slide targets.
 A red `→` marks where to press the key on the deck. Works on a phone or a second laptop.
 
+Alp Eldam presents the full four-minute pitch.
+The clock allocates four minutes. Rehearse with the clips playing to check actual delivery time.
+
 ## Edit
 
 - `index.html`: one `<section>` per slide. `data-step="k"` makes an element appear at press k (0 = on entry);
@@ -45,10 +48,20 @@ shows the Siemens Healthineers simulator scene and is published with the permiss
 and Siemens Healthineers, as relayed by Alp on 2026-10-24. Other simulator files in `media/sim/` stay git-ignored.
 If the clip is missing, the deck skips the slide automatically.
 
+The comparison reports final placement, rather than verified complete handover. The clips are recorded action
+replays, not a live inference demonstration. Round two scored 15/30 after changes to both data and training length,
+against round one's 4/30, on scenarios that also informed development. People ran the improvement workflow and
+selected the model. [Source and limitations](https://github.com/crystalfruit2/siemens_healthineers/blob/main/docs/evidence/host-verification.md).
+
+The webcam extension counts instruments and flags detected contact. Its colour state cannot establish biological
+sterility. The count-discrepancy statistic describes events during 19 of 148 observed operations in
+[Greenberg et al. 2008](https://pubmed.ncbi.nlm.nih.gov/18650646/), not unresolved counts at the end of surgery.
+
 ## Credits
 
 - Inter Tight and JetBrains Mono: SIL Open Font License 1.1 (`fonts/OFL-*.txt`).
 - Photo and webcam video: the team's own material, shown with consent.
 - Simulator clip: see above.
-- QR code: generated offline once with qrcode-generator (MIT, Kazuhiko Arase); only the resulting SVG ships.
+- QR code: generated offline with qrcode-generator (MIT, Kazuhiko Arase), styled with black and red rounded modules.
+  The module positions and destination remain unchanged. Only the resulting SVG ships.
 - No third-party code; no network requests.
