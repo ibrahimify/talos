@@ -47,7 +47,7 @@
   function countTo(el, from, to, ms, my, fmt = v => String(Math.round(v))) {
     el.textContent = fmt(from);
     return tween(ms, p => { el.textContent = fmt(from + (to - from) * p); }, my)
-      .then(ok => { el.textContent = fmt(to); return ok; });
+      .then(ok => { if (ok) el.textContent = fmt(to); return ok; });
   }
 
   // ---------- scenes ----------
@@ -214,7 +214,6 @@
     const my = token;
     const slide = slides[cur];
     animate = animate && !reduced;
-    stage.dataset.motion = animate ? 'play' : 'still';
     if (!animate) stage.classList.add('instant');
     slides.forEach((x, i) => x.classList.toggle('active', i === cur));
     slide.querySelectorAll('[data-step]').forEach(el => el.classList.toggle('on', step >= +el.dataset.step));

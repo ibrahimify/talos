@@ -4,8 +4,8 @@
 :root {
   --bg: #0A0A0A;
   --ink: #F5F3EE;
-  --red: #FF4B40;
-  --dim: rgba(245, 243, 238, .62);
+  --red: #CC0000;
+  --dim: rgba(245, 243, 238, .38);
   --faint: rgba(245, 243, 238, .14);
   --edge: 64px;                            /* headings sit right at the edge */
   --m: 140px;                              /* one content margin for every slide */
@@ -89,7 +89,7 @@ body.idle { cursor: none; }
   transition: opacity .3s ease, transform .5s cubic-bezier(.34, 1.56, .64, 1); }
 .s-proof .verdict.on { opacity: 1; transform: none; }
 .s-proof .verdict small { font-family: var(--mono); font-size: 30px; font-weight: 500; letter-spacing: 0; }
-.s-proof .verdict.fail { background: var(--red); color: var(--bg); }
+.s-proof .verdict.fail { background: var(--red); color: var(--ink); }
 .s-proof .verdict.pass { background: var(--ink); color: var(--bg); }
 .s-proof .l { left: 64px; } .s-proof .r { left: 976px; }
 
@@ -191,36 +191,16 @@ body.idle { cursor: none; }
 #blank { position: fixed; inset: 0; background: var(--bg); z-index: 70; display: none; }
 #blank.show { display: block; }
 
+.s-how .stage-w { white-space: nowrap; }
+.s-nurses .duo { word-spacing: .12em; }
+.s-close .row { grid-template-columns: minmax(0, 1fr) minmax(0, .85fr); column-gap: 64px; }
+.s-close .row .h { font-size: 78px; letter-spacing: -.02em; word-spacing: .12em; }
+.s-close .row .cap { text-align: right; white-space: normal; }
+.s-close .rows.away { transform: translateY(-24px); }
+.s-close .final .dot { transform: translateY(-60px); transition: transform .65s var(--out) .2s, opacity .4s var(--out) .2s; }
+.s-close .final.on .dot { transform: none; }
 .s-demo .scope { position: absolute; left: 0; right: 0; top: 1005px; text-align: center; font: 28px var(--mono); color: var(--dim); }
 .s-nurses .foot a { color: inherit; }
-
-#stage[data-motion="play"] .s-triad.active .w.on:not(.past) .t {
-  transform-origin: 50% 70%;
-  animation: type-pop 620ms var(--out) both;
-}
-#stage[data-motion="play"] .s-numbers.active .cell.focus .n:not(.old) {
-  animation: number-pop 480ms var(--out) both;
-}
-#stage[data-motion="play"] .s-how.active .how.on,
-#stage[data-motion="play"] .s-close.active .final.on .t {
-  transform-origin: left bottom;
-  animation: title-hit 650ms var(--out) both;
-}
-@keyframes type-pop {
-  0% { opacity: 0; transform: translateY(55px) scale(.78, .66) skewX(-9deg); font-weight: 300; }
-  70% { opacity: 1; transform: translateY(-5px) scale(1.055, 1.065) skewX(1deg); font-weight: 900; }
-  100% { opacity: 1; transform: none; font-weight: 900; }
-}
-@keyframes number-pop {
-  0% { transform: scale(.84); }
-  65% { transform: scale(1.07); }
-  100% { transform: none; }
-}
-@keyframes title-hit {
-  0% { opacity: 0; transform: translateX(-60px) scale(.9) skewX(-4deg); }
-  70% { opacity: 1; transform: translateX(5px) scale(1.025); }
-  100% { opacity: 1; transform: none; }
-}
 @media (prefers-reduced-motion: reduce) {
   #stage *, #stage *::before, #stage *::after { animation: none !important; transition: none !important; }
 }

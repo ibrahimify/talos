@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#0A0A0A">
 <title>TALOS teleprompter</title>
 <style>
-  :root { --bg: #0A0A0A; --ink: #F5F3EE; --red: #FF4B40; --dim: rgba(245,243,238,.45); --line: rgba(245,243,238,.14);
+  :root { --bg: #0A0A0A; --ink: #F5F3EE; --red: #CC0000; --dim: rgba(245,243,238,.45); --line: rgba(245,243,238,.14);
     --mono: Consolas, Menlo, "Courier New", monospace; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; background: var(--bg); color: var(--ink); }
@@ -55,13 +55,13 @@ const SLIDES = [
     0,
     40,
     [
-      "[Start on slide 1] Do you know what these numbers mean? This is how we taught and tested our robot.",
-      "→ Five connected steps.",
-      "→ Thirty scenarios to compare our models.",
+      "[Start on slide 1] Do you know what these numbers mean?",
+      "→ At least five nurses we called.",
+      "→ Nearly fifteen hundred public FDA reports we scanned.",
       "→ Eighty-four demonstrations, but the same robot movement.",
-      "→ A dataset of one hundred fourteen demonstrations for our chosen model.",
-      "→ Four boxes placed became fifteen out of thirty.",
-      "→ [Pause] Generated in simulation. Trained and tested."
+      "→ One hundred seventy-three demonstrations generated in simulation.",
+      "→ Thirteen to fifty percent: boxes placed on the tray, before and after retraining, on the same thirty scenarios.",
+      "→ [Pause] Built on site. Tested in simulation."
     ],
     "Alp Eldam"
   ],
@@ -106,20 +106,20 @@ const SLIDES = [
     150,
     185,
     [
-      "Robotic equipment handling could support busy hospital teams. We also explored keeping track of instruments.",
+      "We called nurses to understand their work. Alongside robot learning, we explored keeping track of instruments.",
       "→ We collected nearly fifteen hundred public FDA reports to help us understand the problems.",
-      "→ Counting instruments and flagging hand contact became a separate demo.",
+      "→ Our separate demo counts instruments and warns when a hand may have touched them.",
       "→ One study found counting problems during roughly one in eight operations. That is why this matters."
     ],
     "Alp Eldam"
   ],
   [
-    "Counting and contact",
+    "Instrument demo",
     185,
     205,
     [
-      "[Speak while the video plays] The tool counts two pairs of scissors. When it spots possible hand contact, they turn red and stay flagged for review.",
-      "That warns of contact. It does not prove something is sterile."
+      "[Speak while the video plays] The camera counts two pairs of scissors. It flags a possible touch for review.",
+      "The red colour is a warning. It cannot tell us whether something is truly sterile."
     ],
     "Alp Eldam"
   ],
