@@ -40,7 +40,7 @@
 </style>
 </head>
 <body>
-<header><span><b>TALOS</b> · teleprompter · 4:46</span><span id="speaker"></span><span id="pos"></span></header>
+<header><span><b>TALOS</b> · teleprompter · 4:56</span><span id="speaker"></span><span id="pos"></span></header>
 <main><h1 id="title"></h1><div class="window" id="window"></div><div class="script" id="script"></div></main>
 <footer>
   <span class="timer" id="timer">0:00</span>
@@ -88,13 +88,13 @@ const SLIDES = [
   [
     "How does it work?",
     66,
-    176,
+    186,
     [
       "So how does it work?",
       "→ Demonstrations come in. We check the data, train ACT, test it in Isaac Sim, and load the model to control the robot. ACT learns movements from camera images and the robot's position.",
       "→ When it fails, our tools suggest what new examples to try. Our scripted expert generates them, and we run training.",
       "→ We compare the results and choose which model to keep.",
-      "→ [Video at 2×, 40 s: one real cycle, round 1 to round 2. Press → to move on]",
+      "→ [Video at 1.6×, 50 s: one real cycle, round 1 to round 2. Press → to move on]",
       "→ Here are the thirty scenarios. Round one: four boxes placed.",
       "→ Round two: fifteen. Twelve got better, one got worse. This is what we are proudest of. We changed both the data and training time, and used these scenarios during development.",
       "→ Round three got worse, so we kept round two."
@@ -103,8 +103,8 @@ const SLIDES = [
   ],
   [
     "A hospital example",
-    176,
-    211,
+    186,
+    221,
     [
       "We called nurses to understand their work. Alongside robot learning, we built two features for the operating room.",
       "One: counting. The camera counts the instruments in view.",
@@ -115,8 +115,8 @@ const SLIDES = [
   ],
   [
     "Instrument demo",
-    211,
-    231,
+    221,
+    241,
     [
       "[Speak while the video plays] The camera counts two pairs of scissors. It flags a possible touch for review.",
       "The red colour is a warning. It cannot tell us whether something is truly sterile."
@@ -125,8 +125,8 @@ const SLIDES = [
   ],
   [
     "What comes next",
-    231,
-    253,
+    241,
+    263,
     [
       "Next: in-and-out counting. Count every instrument before and after surgery, so nothing stays inside the patient. Nurses told us this count takes much of their time. And new test scenarios for the full handover."
     ],
@@ -134,8 +134,8 @@ const SLIDES = [
   ],
   [
     "It fails. It learns. It adapts.",
-    253,
-    273,
+    263,
+    283,
     [
       "It fails. We inspect what went wrong.",
       "It learns. We generate more examples and retrain the model.",
@@ -145,8 +145,8 @@ const SLIDES = [
   ],
   [
     "We are TALOS",
-    273,
-    286,
+    283,
+    296,
     [
       "We built a learning loop that helps us improve a robot, and see when it still struggles. Scan here for our code, documentation and findings. We are TALOS."
     ],

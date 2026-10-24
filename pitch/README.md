@@ -36,7 +36,7 @@ The clock allocates 4:06: six seconds on the black opening slide, then the origi
   the next press leaves the slide.
 - `deck.css`: colours and type on `:root` (`#0A0A0A`, `#F5F3EE`, `#CC0000`, Inter Tight + JetBrains Mono).
 - The How slide plays `media/loop_cycle_round1_to_round2.mp4` full screen at its fifth press (one real cycle, round 1 to
-  round 2; the 80 s clip plays at 2×, so 40 s); → moves on at any time.
+  round 2; the 80 s clip plays at 1.6×, so 50 s); → moves on at any time.
 - `deck.js`: the engine and the animated parts (count-ups, the loop dot, the 30-scenario grid). The grid uses the
   real per-scenario outcomes of evaluation set E from the team's paired audit.
 

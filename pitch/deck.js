@@ -117,11 +117,11 @@
   const STAGE_X = [260, 610, 960, 1310, 1660], TRACK_Y = 560;
   // Step 4 shows the full-screen loop video; the pipeline and results keep their own step numbers (0-3, then 4-6).
   const loopVid = document.getElementById('loopvid'), VID_STEP = 4;
-  loopVid.defaultPlaybackRate = loopVid.playbackRate = 2;  // 80 s clip shown in 40 s
+  loopVid.defaultPlaybackRate = loopVid.playbackRate = 1.6;  // 80 s clip shown in 50 s
   scenes.how = {
     leave() { loopVid.pause(); },
     render(slide, step, animate, my) {
-      if (step === VID_STEP) { loopVid.currentTime = 0; loopVid.playbackRate = 2; loopVid.play().catch(() => {}); }
+      if (step === VID_STEP) { loopVid.currentTime = 0; loopVid.playbackRate = 1.6; loopVid.play().catch(() => {}); }
       else loopVid.pause();
       const s = step > VID_STEP ? step - 1 : Math.min(step, VID_STEP - 1);
       if (step === VID_STEP) animate = false;  // the pipeline stays as it is underneath the video
