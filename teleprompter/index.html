@@ -40,7 +40,7 @@
 </style>
 </head>
 <body>
-<header><span><b>TALOS</b> · teleprompter · 4:00</span><span id="speaker"></span><span id="pos"></span></header>
+<header><span><b>TALOS</b> · teleprompter · 4:06</span><span id="speaker"></span><span id="pos"></span></header>
 <main><h1 id="title"></h1><div class="window" id="window"></div><div class="script" id="script"></div></main>
 <footer>
   <span class="timer" id="timer">0:00</span>
@@ -51,11 +51,20 @@
 // [title, start s, end s, lines]. "→" starts a line where you press the key on the deck; [..] is a stage direction.
 const SLIDES = [
   [
-    "Our robot in numbers",
+    "The problem",
     0,
-    40,
+    6,
     [
-      "[Start on slide 1] Do you know what these numbers mean?",
+      "[Black screen] Nurses are short-staffed, and robots can't be programmed for every task. We built the loop that teaches them."
+    ],
+    "Alp Eldam"
+  ],
+  [
+    "Our robot in numbers",
+    6,
+    46,
+    [
+      "Do you know what these numbers mean?",
       "→ At least five nurses we called.",
       "→ Nearly fifteen hundred public FDA reports we scanned.",
       "→ Eighty-four demonstrations, but the same robot movement.",
@@ -67,8 +76,8 @@ const SLIDES = [
   ],
   [
     "It fails. It learns. It adapts.",
-    40,
-    60,
+    46,
+    66,
     [
       "It fails. We inspect what went wrong.",
       "→ It learns. We generate more examples and retrain the model.",
@@ -78,8 +87,8 @@ const SLIDES = [
   ],
   [
     "The robot comparison",
-    60,
-    80,
+    66,
+    86,
     [
       "[Speak while the clip plays] This is a recorded replay. Same scenario, same start, replayed faster.",
       "Left, our first model misses the grasp. Right, the next model puts the box on the tray. That is the placement result we measure here."
@@ -88,8 +97,8 @@ const SLIDES = [
   ],
   [
     "How does it work?",
-    80,
-    150,
+    86,
+    156,
     [
       "So how does it work?",
       "→ Demonstrations come in. We check the data, train ACT, test it in Isaac Sim, and load the model to control the robot. ACT learns movements from camera images and the robot's position.",
@@ -103,20 +112,20 @@ const SLIDES = [
   ],
   [
     "A hospital example",
-    150,
-    185,
+    156,
+    191,
     [
-      "We called nurses to understand their work. Alongside robot learning, we explored keeping track of instruments.",
-      "→ We collected nearly fifteen hundred public FDA reports to help us understand the problems.",
-      "→ Our separate demo counts instruments and warns when a hand may have touched them.",
-      "→ One study found counting problems during roughly one in eight operations. That is why this matters."
+      "We called nurses to understand their work. Alongside robot learning, we built two features for the operating room.",
+      "→ One: counting. The camera counts the instruments in view.",
+      "→ Two: sterility. It warns when a hand may have touched a sterile instrument.",
+      "→ We collected nearly fifteen hundred public FDA reports to understand the problems, and one study found counting problems during roughly one in eight operations."
     ],
     "Alp Eldam"
   ],
   [
     "Instrument demo",
-    185,
-    205,
+    191,
+    211,
     [
       "[Speak while the video plays] The camera counts two pairs of scissors. It flags a possible touch for review.",
       "The red colour is a warning. It cannot tell us whether something is truly sterile."
@@ -125,11 +134,11 @@ const SLIDES = [
   ],
   [
     "What comes next",
-    205,
-    240,
+    211,
+    246,
     [
-      "Next: better camera inputs, more varied demonstrations, and a fresh test of the whole handover. Then we can test a pretrained model and work towards real hardware.",
-      "→ We built a learning loop that helps us improve a robot, and see when it still struggles. Scan the code for everything we have shared. We are TALOS."
+      "Next: in-and-out counting. Count every instrument before and after surgery, so nothing stays inside the patient. Nurses told us this count takes much of their time. And new test scenarios for the full handover.",
+      "→ We built a learning loop that helps us improve a robot, and see when it still struggles. Scan here for our code, documentation and findings. We are TALOS."
     ],
     "Alp Eldam"
   ]
