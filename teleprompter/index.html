@@ -12,7 +12,7 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; background: var(--bg); color: var(--ink); }
   body { font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif; display: flex; flex-direction: column; }
-  header, footer { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px clamp(16px, 4vw, 48px);
+  header, footer { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding: 16px clamp(16px, 4vw, 48px);
     font-family: var(--mono); font-size: 15px; letter-spacing: .08em; color: var(--dim); text-transform: uppercase; }
   header { border-bottom: 1px solid var(--line); }
   footer { border-top: 1px solid var(--line); flex-wrap: wrap; }
@@ -40,7 +40,7 @@
 </style>
 </head>
 <body>
-<header><span><b>TALOS</b> · teleprompter · 4:00</span><span id="pos"></span></header>
+<header><span><b>TALOS</b> · teleprompter · 4:00</span><span id="speaker"></span><span id="pos"></span></header>
 <main><h1 id="title"></h1><div class="window" id="window"></div><div class="script" id="script"></div></main>
 <footer>
   <span class="timer" id="timer">0:00</span>
@@ -50,41 +50,90 @@
 <script>
 // [title, start s, end s, lines]. "→" starts a line where you press the key on the deck; [..] is a stage direction.
 const SLIDES = [
-  ['Numbers', 0, 45, [
-    '[deck opens on this slide] Do you know what these numbers mean?',
-    '→ Five nurses we called.',
-    '→ Nearly fifteen hundred FDA incident reports we scanned.',
-    '→ Eighty-four demonstrations we were given: all copies of the same movement.',
-    '→ One hundred seventy-three demonstrations we generated ourselves, in simulation.',
-    '→ And thirteen to fifty percent: boxes placed, before and after one turn of our loop.',
-    '→ [pause on the slogan]']],
-  ['It fails. It learns. It adapts.', 45, 65, [
-    '→ When our robot fails, our monitor catches it.',
-    '→ The loop diagnoses the problem and creates new training data, so it can be retrained…',
-    '→ …and it only ships when it is better.']],
-  ['FAIL | PASS', 65, 80, [
-    '→ Same scenario, same start.',
-    'Left, round one: it reaches, misses the grasp, and never picks the box up. Fail.',
-    'Right, after one turn of the loop: it lifts the box, hands it over and puts it on the tray. Pass.']],
-  ['How?', 80, 150, [
-    '→ But how does it do that? Let me walk you through the full architecture.',
-    '→ Demonstrations come in and get checked: that\'s how we found eighty-four equals one. A policy trains, and is tested in simulation on thirty scenarios.',
-    '→ When it fails, the pipeline diagnoses the failures and orders new demonstrations. Our scripted expert generates them, and we retrain.',
-    '→ Nothing reaches the robot without passing the gate.',
-    '→ Here are the thirty scenarios. Round one: four boxes placed.',
-    '→ One turn of the loop later: fifteen. Twelve got better, one got worse. This is what we are proudest of.',
-    '→ Then we pushed harder, and round three got worse. The gate said: not yet.']],
-  ['The nurses', 150, 190, [
-    '→ The second thing we want to talk about is our nurses\' problems. We called our nurse friends and asked what they struggle with most during surgery.',
-    '→ We also scraped nearly 1,500 incident reports from the FDA.',
-    '→ The most recurring problems a robot could help with were sterility and instrument counts.',
-    '→ So we built an image recognition tool that tells sterile from contaminated instruments, and counts them. Let\'s see it in action.']],
-  ['Sterility demo', 190, 215, [
-    '→ Two pairs of scissors are counted. A hand touches them: they turn red, not sterile, and they stay that way.']],
-  ['Future scope · close', 215, 240, [
-    '→ Next: a pretrained robot model, a fresh test set, and real arms. Same loop, same gate.',
-    '→ We built the loop that makes a robot better, and tells you when it isn\'t ready. Scan the code for our team guide. We are TALOS.',
-    '[stop; no thank-you]']],
+  [
+    "The learning workflow",
+    0,
+    40,
+    [
+      "[Start on slide 1] TALOS helps engineers teach and test robot skills. Equipment handling motivates the work. These numbers explain what we built.",
+      "→ Five stages connect demonstrations to a served robot policy.",
+      "→ Thirty scenarios let us compare versions.",
+      "→ Eighty-four supplied episodes repeated one robot movement.",
+      "→ Our selected model used one hundred fourteen generated demonstrations.",
+      "→ Its placement score rose from thirteen to fifty percent.",
+      "→ [Pause] We built and tested this in simulation."
+    ],
+    "Alp Eldam"
+  ],
+  [
+    "Failure, retraining and comparison",
+    40,
+    60,
+    [
+      "We wanted to make the next experiment clearer when the robot fails.",
+      "→ Our diagnostics suggest additional demonstrations. A scripted expert generates them, and we run training.",
+      "→ We compare the new model with the previous one and decide which to keep. Here is the result."
+    ],
+    "Alp Eldam"
+  ],
+  [
+    "Recorded placement comparison",
+    60,
+    80,
+    [
+      "[Let the 10-second clip play] These are recorded action replays of the same scenario, seven and a half times faster.",
+      "On the left, round one misses the grasp. On the right, round two places the box on the tray. This illustrates placement, not proof of a complete handover."
+    ],
+    "Alp Eldam"
+  ],
+  [
+    "The five-stage stack",
+    80,
+    150,
+    [
+      "Here is how we connected the stack.",
+      "→ We ingest demonstrations, check their quality, train with LeRobot ACT, evaluate in Isaac Sim and serve the saved policy. ACT learns movement sequences from images and robot state. We chose it because it fitted the interface and let us test the full workflow.",
+      "→ Diagnostics suggest further data collection. People run generation and retraining.",
+      "→ A comparison gate supports our selection. We still need to connect all quality checks to training and deployment.",
+      "→ Each square is one of thirty scenarios. Round one placed four boxes.",
+      "→ After changing the data and training for longer, round two placed fifteen. Twelve scenarios improved and one regressed. The score checks final placement. These scenarios also informed development.",
+      "→ Round three fell to twelve, so we kept round two. More training does not guarantee a better robot."
+    ],
+    "Alp Eldam"
+  ],
+  [
+    "Hospital motivation and an extension",
+    150,
+    185,
+    [
+      "The challenge motivates equipment handling in clinical settings. We also explored instrument accountability.",
+      "→ Our research corpus includes fourteen hundred ninety-seven public FDA reports. That count describes the corpus, not how common a problem is.",
+      "→ Contact tracking and counting became a separate prototype.",
+      "→ One published study found count discrepancies during nineteen of one hundred forty-eight operations. That motivates assistance. We have not measured clinical benefit."
+    ],
+    "Alp Eldam"
+  ],
+  [
+    "Contact and counting prototype",
+    185,
+    205,
+    [
+      "[Let the video play] The prototype counts two pairs of scissors and flags detected hand contact. The flag stays on for review.",
+      "The colour records a contact rule. It cannot determine biological sterility. A trained person would still make that judgement."
+    ],
+    "Alp Eldam"
+  ],
+  [
+    "Next steps",
+    205,
+    240,
+    [
+      "Next, we need better camera inputs and more varied demonstrations. We then need a fresh test set and a success check for the whole handover.",
+      "We trained the ACT control policy from scratch. Testing a pretrained robot model is another next step. Real hardware would need calibration, recovery and supervised validation.",
+      "→ TALOS gives engineers a way to inspect data, compare robot skills and decide what to try next. Scan the code for our team guide and project links. We are TALOS."
+    ],
+    "Alp Eldam"
+  ]
 ];
 
 const $ = id => document.getElementById(id);
@@ -93,7 +142,8 @@ const esc = s => s.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&g
 let i = 0, running = false, started = 0, elapsed = 0;
 
 function show() {
-  const [title, a, b, lines] = SLIDES[i];
+  const [title, a, b, lines, speaker] = SLIDES[i];
+  $('speaker').textContent = speaker;
   $('pos').textContent = `${i + 1} / ${SLIDES.length}`;
   $('title').textContent = title;
   $('window').textContent = `${fmt(a)} – ${fmt(b)}`;

@@ -11,3 +11,5 @@ Team TALOS · Siemens Healthineers Hackathon 2026, Challenge 2: the learning loo
 
 **Presenting the pitch:** open the link in Chrome or Edge, press `F` for fullscreen, `→` / `←` or a clicker to step,
 `N` for speaker notes, `A` for the fine print during Q&A. Everything is static and works offline from a downloaded copy.
+
+Alp Eldam presents the full four-minute pitch. The teleprompter provides the script and timing for each slide.
