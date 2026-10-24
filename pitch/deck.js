@@ -167,14 +167,6 @@
     },
   };
 
-  scenes.nurses = {
-    render(slide, s, animate, my) {
-      const el = slide.querySelector('#reports');
-      if (s === 1 && animate) countTo(el, 0, 1497, 1200, my, v => Math.round(v).toLocaleString('en-US'));
-      else el.textContent = '1,497';
-    },
-  };
-
   const demo = document.getElementById('demo');
   scenes.demo = playOnEnter(demo, demo.closest('.slide'));
 

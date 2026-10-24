@@ -1,6 +1,6 @@
 # TALOS finals pitch
 
-The 4-minute final pitch of team TALOS, Siemens Healthineers Hackathon 2026, Challenge 2.
+The final pitch of team TALOS (4:06), Siemens Healthineers Hackathon 2026, Challenge 2.
 A single web page that works like PowerPoint.
 
 ## Present
@@ -22,11 +22,11 @@ returns to exactly the same step. Going back always shows the finished state of 
 
 ## Teleprompter
 
-`teleprompter/index.html`: the word-for-word script per slide with a 4:00 clock and per-slide targets.
+`teleprompter/index.html`: the word-for-word script per slide with a 4:06 clock and per-slide targets.
 A red `→` marks where to press the key on the deck. Works on a phone or a second laptop.
 
-Alp Eldam presents the full four-minute pitch.
-The clock allocates four minutes. Rehearse with the clips playing to check actual delivery time.
+Alp Eldam presents the full pitch.
+The clock allocates 4:06: six seconds on the black opening slide, then the original four minutes. Rehearse with the clips playing to check actual delivery time.
 
 ## Edit
 
@@ -38,10 +38,12 @@ The clock allocates four minutes. Rehearse with the clips playing to check actua
 
 Rule for every change: motion only where it explains something; nothing flashes or turns the whole screen bright.
 
+The deck opens on an empty black slide (`#1.1`), so the problem can be stated in one line before any number appears.
 The headline keeps its original wording: **It fails. It learns. It adapts.** People generate data, run training
-and choose the model. The opening retains its original colours and focus changes, without number-pop effects.
+and choose the model. The numbers slide retains its original colours and focus changes, without number-pop effects.
 The closing uses a short, smooth fade and settle. Reduced-motion preferences disable non-essential transitions.
-The opening's nurse calls are a team-reported activity. The 173 demonstrations are the total generated dataset,
+The numbers slide's nurse calls are a team-reported activity, and so is the closing remark that the count after an
+operation takes much of the nurses' time (not recorded or quantified). The 173 demonstrations are the total generated dataset,
 while the selected round-two model used the earlier 114-episode dataset.
 
 ## The FAIL | PASS slide
@@ -59,8 +61,9 @@ replays, not a live inference demonstration. Round two scored 15/30 after change
 against round one's 4/30, on scenarios that also informed development. People ran the improvement workflow and
 selected the model. [Source and limitations](https://github.com/crystalfruit2/siemens_healthineers/blob/main/docs/evidence/host-verification.md).
 
-The webcam extension counts instruments and flags detected contact. Its colour state cannot establish biological
-sterility. The count-discrepancy statistic describes events during 19 of 148 observed operations in
+The webcam extension counts instruments and flags detected contact. The nurses slide names these two features
+COUNTING and STERILITY; STERILITY means a possible-touch warning. Its colour state cannot establish biological
+sterility. The future-scope slide lists in-and-out counting (count before surgery = count after) and new test scenarios. The count-discrepancy statistic describes events during 19 of 148 observed operations in
 [Greenberg et al. 2008](https://pubmed.ncbi.nlm.nih.gov/18650646/), not unresolved counts at the end of surgery.
 
 ## Credits
@@ -68,6 +71,7 @@ sterility. The count-discrepancy statistic describes events during 19 of 148 obs
 - Inter Tight and JetBrains Mono: SIL Open Font License 1.1 (`fonts/OFL-*.txt`).
 - Photo and webcam video: the team's own material, shown with consent.
 - Simulator clip: see above.
-- QR code: generated offline with qrcode-generator (MIT, Kazuhiko Arase), styled with black rounded modules on white.
-  The module positions and destination remain unchanged. Only the resulting SVG ships.
+- QR code: generated offline with qrcode-generator 1.4.4 (MIT, Kazuhiko Arase), error correction M, styled with black
+  rounded modules on white. It points to https://github.com/crystalfruit2/siemens_healthineers (code, docs and
+  findings). Only the resulting SVG ships.
 - No third-party code; no network requests.

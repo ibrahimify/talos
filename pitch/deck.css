@@ -148,15 +148,14 @@ body.idle { cursor: none; }
 .s-nurses .tag b { color: var(--red); font-weight: 900; }
 .s-nurses .right { position: absolute; left: 790px; right: var(--m); top: 150px; height: 790px; display: flex;
   flex-direction: column; justify-content: space-between; }
-.s-nurses .big { font-size: 190px; }
-.s-nurses .lbl { font-weight: 800; font-size: 40px; color: var(--dim); margin-top: 22px; }
-.s-nurses .duo { font-weight: 900; font-size: 128px; line-height: .95; letter-spacing: -.04em; }
-.s-nurses .one8 { display: flex; align-items: flex-start; gap: 48px; }
-.s-nurses .one8 .x { font-weight: 900; font-size: 120px; letter-spacing: -.04em; word-spacing: .14em; white-space: nowrap; line-height: .9; }
-.s-nurses .one8 .t { font-weight: 800; font-size: 38px; line-height: 1.2; max-width: 560px; padding-top: 8px; }
-.s-nurses .eight { display: flex; gap: 10px; margin-top: 18px; }
-.s-nurses .eight i { width: 40px; height: 40px; border: 2px solid var(--dim); transition: background-color .3s ease .5s, border-color .3s ease .5s; }
-.s-nurses .one8.on .eight i:first-child { background: var(--red); border-color: var(--red); }
+/* the two features are the message: big words, generous air; the numbers sit underneath as support */
+.s-nurses .feats { display: flex; flex-direction: column; gap: 64px; }
+.s-nurses .feat .no { display: block; font-family: var(--mono); font-size: 30px; letter-spacing: .14em; color: var(--red); margin-bottom: 14px; }
+.s-nurses .feat .h { font-weight: 900; font-size: 144px; line-height: .9; letter-spacing: -.04em; white-space: nowrap; }
+.s-nurses .feat .cap { margin-top: 20px; }
+.s-nurses .stats { display: grid; grid-template-columns: 1fr 1fr; column-gap: 56px; padding-top: 28px; border-top: 2px solid var(--faint); }
+.s-nurses .stats b { display: block; font-weight: 900; font-size: 56px; line-height: 1; letter-spacing: -.03em; word-spacing: .12em; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.s-nurses .stats span { display: block; margin-top: 12px; font-family: var(--mono); font-size: 24px; line-height: 1.35; color: var(--dim); }
 .s-nurses .foot { position: absolute; left: 790px; right: var(--m); bottom: 46px; font-family: var(--mono); font-size: 22px; color: var(--dim); }
 
 /* ---------- DEMO ---------- */
@@ -168,7 +167,7 @@ body.idle { cursor: none; }
 .s-demo .chip.red.on { color: var(--red); }
 
 /* ---------- CLOSE ---------- */
-.s-close .rows { position: absolute; left: var(--m); right: var(--m); top: 210px; transition: opacity .4s ease, transform .5s var(--in); }
+.s-close .rows { position: absolute; left: var(--m); right: var(--m); top: 360px; transition: opacity .4s ease, transform .5s var(--in); }
 .s-close .rows.away { opacity: 0; transform: translateY(-40px); }
 .s-close .row { display: grid; grid-template-columns: 1fr auto; align-items: baseline; padding: 34px 0; border-top: 2px solid var(--faint); }
 .s-close .row .h { font-weight: 900; font-size: 84px; letter-spacing: -.035em; white-space: nowrap; }
@@ -192,12 +191,11 @@ body.idle { cursor: none; }
 #blank.show { display: block; }
 
 .s-how .stage-w { white-space: nowrap; }
-.s-nurses .duo { word-spacing: .12em; }
 .s-close .row { grid-template-columns: minmax(0, 1fr) minmax(0, .85fr); column-gap: 64px; }
 .s-close .row .h { font-size: 78px; letter-spacing: -.02em; word-spacing: .12em; }
 .s-close .row .cap { text-align: right; white-space: normal; }
 .s-close .rows.away { transform: translateY(-24px); }
-.s-close .final .dot { transform: translateY(-60px); transition: transform .65s var(--out) .2s, opacity .4s var(--out) .2s; }
+.s-close .final .dot { transform: translateY(-900px); transition: transform .7s cubic-bezier(.5, 0, .75, 0) .5s, opacity .1s linear .5s; }
 .s-close .final.on { transition-delay: .4s; }
 .s-close .final.on .dot { transform: none; }
 .s-demo .scope { position: absolute; left: 0; right: 0; top: 1005px; text-align: center; font: 28px var(--mono); color: var(--dim); }
