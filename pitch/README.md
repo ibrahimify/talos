@@ -62,6 +62,6 @@ sterility. The count-discrepancy statistic describes events during 19 of 148 obs
 - Inter Tight and JetBrains Mono: SIL Open Font License 1.1 (`fonts/OFL-*.txt`).
 - Photo and webcam video: the team's own material, shown with consent.
 - Simulator clip: see above.
-- QR code: generated offline with qrcode-generator (MIT, Kazuhiko Arase), styled with black and red rounded modules.
+- QR code: generated offline with qrcode-generator (MIT, Kazuhiko Arase), styled with black rounded modules on white.
   The module positions and destination remain unchanged. Only the resulting SVG ships.
 - No third-party code; no network requests.
