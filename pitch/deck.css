@@ -144,6 +144,12 @@ body.idle { cursor: none; }
 .s-how .gcap .cap { position: absolute; left: var(--m); top: 920px; }
 .s-how .notyet { position: absolute; left: 1290px; top: 850px; font-size: 120px; font-weight: 900; letter-spacing: -.04em; color: var(--red); }
 
+/* full-screen loop video inside HOW (step 4) */
+.s-how .loopvid { position: absolute; inset: 0; z-index: 5; background: var(--bg); opacity: 0; visibility: hidden;
+  transition: opacity .35s ease, visibility 0s linear .35s; }
+.s-how .loopvid.on { opacity: 1; visibility: visible; transition: opacity .35s ease; }
+.s-how .loopvid video { width: 100%; height: 100%; object-fit: contain; display: block; }
+
 /* ---------- NURSES ---------- */
 .s-nurses .photo { position: absolute; left: var(--m); top: 150px; width: 560px; height: 746px; overflow: hidden;
   clip-path: inset(100% 0 0 0); transition: clip-path .6s var(--in); }
