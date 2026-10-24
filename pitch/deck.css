@@ -40,6 +40,11 @@ body.idle { cursor: none; }
 .type.on { clip-path: inset(0 0 0 0); }
 .label { position: absolute; left: var(--edge); top: var(--edge); font-family: var(--mono); font-size: 30px; letter-spacing: .14em; color: var(--dim); }
 
+/* ---------- PROBLEM: one word for two big screens; the red full stop rhymes with the closing "TALOS." ---------- */
+.s-problem .word { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-54%); text-align: center;
+  font-size: 400px; font-weight: 900; letter-spacing: -.035em; line-height: .9; white-space: nowrap; }
+.s-problem .word .dot { display: inline-block; width: .19em; height: .19em; margin-left: .07em; border-radius: 50%; background: var(--red); }
+
 /* ---------- NUMBERS ---------- */
 .s-numbers .cell { position: absolute; }
 .s-numbers .cell.l { left: var(--m); } .s-numbers .cell.r { right: var(--m); text-align: right; }

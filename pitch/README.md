@@ -38,7 +38,7 @@ The clock allocates 4:06: six seconds on the black opening slide, then the origi
 
 Rule for every change: motion only where it explains something; nothing flashes or turns the whole screen bright.
 
-The deck opens on an empty black slide (`#1.1`), so the problem can be stated in one line before any number appears.
+The deck opens on a single word, **Problem.** (`#1.1`), held while the problem is stated in one line before any number appears.
 The headline keeps its original wording: **It fails. It learns. It adapts.** People generate data, run training
 and choose the model. The numbers slide retains its original colours and focus changes, without number-pop effects.
 The closing uses a short, smooth fade and settle. Reduced-motion preferences disable non-essential transitions.
