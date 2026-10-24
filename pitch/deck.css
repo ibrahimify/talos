@@ -198,6 +198,7 @@ body.idle { cursor: none; }
 .s-close .row .cap { text-align: right; white-space: normal; }
 .s-close .rows.away { transform: translateY(-24px); }
 .s-close .final .dot { transform: translateY(-60px); transition: transform .65s var(--out) .2s, opacity .4s var(--out) .2s; }
+.s-close .final.on { transition-delay: .4s; }
 .s-close .final.on .dot { transform: none; }
 .s-demo .scope { position: absolute; left: 0; right: 0; top: 1005px; text-align: center; font: 28px var(--mono); color: var(--dim); }
 .s-nurses .foot a { color: inherit; }
