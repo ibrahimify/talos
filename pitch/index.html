@@ -16,14 +16,14 @@
 
   <!-- NUMBERS -->
   <section class="slide s-numbers" data-scene="numbers" data-steps="7"
-    data-note="Alp Eldam: [Start on slide 1] Do you know what these numbers mean? This is how we taught and tested our robot. → Five connected steps. → Thirty scenarios to compare our models. → Eighty-four demonstrations, but the same robot movement. → A dataset of one hundred fourteen demonstrations for our chosen model. → Four boxes placed became fifteen out of thirty. → [Pause] Generated in simulation. Trained and tested.">
-    <div class="cell l row1 fx" data-step="0" data-focus="1"><div class="n mega">5</div><div class="cap type" data-only="1">connected steps</div></div>
-    <div class="cell r row1 fx" data-step="0" data-focus="2" style="transition-delay:.06s"><div class="n mega">30</div><div class="cap type" data-only="2">test scenarios</div></div>
+    data-note="Alp Eldam: [Start on slide 1] Do you know what these numbers mean? → At least five nurses we called. → Nearly fifteen hundred public FDA reports we scanned. → Eighty-four demonstrations, but the same robot movement. → One hundred seventy-three demonstrations generated in simulation. → Thirteen to fifty percent: boxes placed on the tray, before and after retraining, on the same thirty scenarios. → [Pause] Built on site. Tested in simulation.">
+    <div class="cell l row1 fx" data-step="0" data-focus="1"><div class="n mega">5+</div><div class="cap type" data-only="1">nurses we called</div></div>
+    <div class="cell r row1 fx" data-step="0" data-focus="2" style="transition-delay:.06s"><div class="n mega">1,497</div><div class="cap type" data-only="2">FDA incident reports scanned</div></div>
     <div class="cell l row2 fx" data-step="0" data-focus="3" style="transition-delay:.12s"><div class="n mega">84 <span class="red">= 1</span></div><div class="cap type" data-only="3">demos we were given · 1 movement</div></div>
-    <div class="cell r row2 fx" data-step="0" data-focus="4" style="transition-delay:.18s"><div class="n mega">114</div><div class="cap type" data-only="4">dataset for our chosen model</div></div>
+    <div class="cell r row2 fx" data-step="0" data-focus="4" style="transition-delay:.18s"><div class="n mega">173</div><div class="cap type" data-only="4">demos we generated in simulation</div></div>
     <div class="cell wide fx" data-step="0" data-focus="5" style="transition-delay:.24s">
       <div class="pair"><span class="n mega old">13%</span><span class="n mega" id="fifty">50%</span></div>
-      <div class="cap type" data-only="5">placement score · same 30 scenarios</div>
+      <div class="cap type" data-only="5">boxes placed · same 30 scenarios · before and after retraining</div>
     </div>
     <div class="slogan fx" data-step="6"><span>Built on site.</span><span class="red">Tested in simulation.</span></div>
   </section>
@@ -59,16 +59,16 @@
         <path class="arc" id="arc" d="M1310 560 C1310 770 610 770 610 560"/>
         <circle class="dot" id="dot" cx="260" cy="560" r="15"/>
       </svg>
-      <div class="stage-w" style="left:260px">LOAD DATA</div>
+      <div class="stage-w" style="left:260px">INGEST</div>
       <div class="stage-w" style="left:610px">CHECK</div>
       <div class="stage-w" style="left:960px">TRAIN</div>
       <div class="stage-w" style="left:1310px">TEST</div>
-      <div class="stage-w" style="left:1660px">RUN MODEL</div>
+      <div class="stage-w" style="left:1660px">SERVE</div>
       <div class="arc-label fx" data-step="2">DIAGNOSE · GENERATE · RETRAIN</div>
       <div class="gate-label fx" data-step="3">GATE</div>
       <div class="gate" data-step="3"></div>
       <div class="pcap">
-        <div class="cap type" data-only="1">five connected steps · we run the process</div>
+        <div class="cap type" data-only="1">demonstrations in · a tested model out</div>
         <div class="cap type" data-only="2">find the failures · try new examples</div>
         <div class="cap type" data-only="3">compare the results · choose a model</div>
       </div>
@@ -88,12 +88,12 @@
 
   <!-- NURSES -->
   <section class="slide s-nurses" data-scene="nurses" data-steps="4"
-    data-note="Alp Eldam: Robotic equipment handling could support busy hospital teams. We also explored keeping track of instruments. → We collected nearly fifteen hundred public FDA reports to help us understand the problems. → Counting instruments and flagging hand contact became a separate demo. → One study found counting problems during roughly one in eight operations. That is why this matters.">
+    data-note="Alp Eldam: We called nurses to understand their work. Alongside robot learning, we explored keeping track of instruments. → We collected nearly fifteen hundred public FDA reports to help us understand the problems. → Our separate demo counts instruments and warns when a hand may have touched them. → One study found counting problems during roughly one in eight operations. That is why this matters.">
     <div class="photo" data-step="0"><img src="media/nurse.jpg" alt="An operating-room nurse in scrubs"></div>
-    <div class="tag fx" data-step="0">OPTIONAL EXTENSION</div>
+    <div class="tag fx" data-step="0"><b>5+</b> nurses we called</div>
     <div class="right">
       <div class="fx" data-step="1"><div class="big mega" id="reports">1,497</div><div class="lbl">public FDA reports in our corpus</div></div>
-      <div class="duo"><div class="red fx snap" data-step="2">CONTACT</div><div class="fx snap" data-step="2" style="transition-delay:.15s">COUNTING</div></div>
+      <div class="duo"><div class="red fx snap" data-step="2">COUNTING</div><div class="fx snap" data-step="2" style="transition-delay:.15s">TOUCH ALERTS</div></div>
       <div class="one8 fx" data-step="3">
         <div><div class="x">1 in 8</div><div class="eight"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
         <div class="t">operations had a count discrepancy during surgery in one study¹</div>
@@ -104,13 +104,13 @@
 
   <!-- DEMO -->
   <section class="slide s-demo" data-scene="demo" data-steps="1"
-    data-note="Alp Eldam: [Speak while the video plays] The tool counts two pairs of scissors. When it spots possible hand contact, they turn red and stay flagged for review. That warns of contact. It does not prove something is sterile.">
+    data-note="Alp Eldam: [Speak while the video plays] The camera counts two pairs of scissors. It flags a possible touch for review. The red colour is a warning. It cannot tell us whether something is truly sterile.">
     <div class="vwrap"><video id="demo" src="media/sterility_demo.mp4" muted playsinline preload="auto"></video></div>
-    <div class="scope">Possible contact. A person must review.</div>
+    <div class="scope">A visual warning. Sterility needs a separate check.</div>
     <div class="chips">
       <span class="chip" data-t="6.0">COUNT: 2</span>
-      <span class="chip" data-t="9.0">TOUCHED</span>
-      <span class="chip red" data-t="10.0">CONTACT FLAG</span>
+      <span class="chip" data-t="9.0">POSSIBLE TOUCH</span>
+      <span class="chip red" data-t="10.0">REVIEW</span>
     </div>
   </section>
 
@@ -119,9 +119,9 @@
     data-note="Alp Eldam: Next: better camera inputs, more varied demonstrations, and a fresh test of the whole handover. Then we can test a pretrained model and work towards real hardware. → We built a learning loop that helps us improve a robot, and see when it still struggles. Scan the code for everything we have shared. We are TALOS.">
     <div class="label fx" data-only="0">FUTURE SCOPE</div>
     <div class="rows" id="rows">
-      <div class="row fx" data-step="0"><span class="h">Camera and data</span><span class="cap">then test pretrained models</span></div>
-      <div class="row fx" data-step="0" style="transition-delay:.12s"><span class="h">Fresh task test</span><span class="cap">score the whole handover</span></div>
-      <div class="row fx" data-step="0" style="transition-delay:.24s"><span class="h">Real hardware</span><span class="cap">calibration and supervised trials</span></div>
+      <div class="row fx" data-step="0"><span class="h">Pretrained model</span><span class="cap">learn from an existing model</span></div>
+      <div class="row fx" data-step="0" style="transition-delay:.12s"><span class="h">New test scenarios</span><span class="cap">check the full handover</span></div>
+      <div class="row fx" data-step="0" style="transition-delay:.24s"><span class="h">Real arms</span><span class="cap">careful setup and supervised trials</span></div>
     </div>
     <div class="final fx" data-step="1"><div class="t">TALOS<span class="dot"></span></div><div class="sub">The loop that adapts.</div></div>
     <div class="scan fx" data-step="1">

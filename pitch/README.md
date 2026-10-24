@@ -32,17 +32,17 @@ The clock allocates four minutes. Rehearse with the clips playing to check actua
 
 - `index.html`: one `<section>` per slide. `data-step="k"` makes an element appear at press k (0 = on entry);
   `data-only="k"` shows it at press k only. `data-note` holds the speaker text.
-- `deck.css`: colours and type on `:root` (`#0A0A0A`, `#F5F3EE`, `#FF4B40`, Inter Tight + JetBrains Mono).
+- `deck.css`: colours and type on `:root` (`#0A0A0A`, `#F5F3EE`, `#CC0000`, Inter Tight + JetBrains Mono).
 - `deck.js`: the engine and the animated parts (count-ups, the loop dot, the 30-scenario grid). The grid uses the
   real per-scenario outcomes of evaluation set E from the team's paired audit.
 
 Rule for every change: motion only where it explains something; nothing flashes or turns the whole screen bright.
 
-The headline keeps its original wording: **It fails. It learns. It adapts.** The notes explain that people generate
-data, run training and choose the model. Short type-pop and number-hit animations play on forward steps, then hold.
-Back, Home/End, reload and reduced-motion preferences show the settled state. Type and timing take inspiration from
-[Ajith's motion reel](https://prompt-motion.com/ajith-io-b5626e); the implementation uses our existing CSS/JavaScript,
-with no borrowed media or added browser dependency.
+The headline keeps its original wording: **It fails. It learns. It adapts.** People generate data, run training
+and choose the model. The opening retains its original colours and focus changes, without number-pop effects.
+The closing uses a short, smooth fade and settle. Reduced-motion preferences disable non-essential transitions.
+The opening's nurse calls are a team-reported activity. The 173 demonstrations are the total generated dataset,
+while the selected round-two model used the earlier 114-episode dataset.
 
 ## The FAIL | PASS slide
 
