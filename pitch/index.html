@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0A0A0A">
+<meta name="description" content="TALOS: the learning loop around a robot. Siemens Healthineers Hackathon 2026, Challenge 2.">
+<title>TALOS</title>
+<link rel="preload" href="fonts/InterTight-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/JetBrainsMono-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<div id="stage">
+
+  <!-- NUMBERS -->
+  <section class="slide s-numbers" data-scene="numbers" data-steps="7"
+    data-note="Do you know what these numbers mean? — Five nurses we called. — Nearly fifteen hundred FDA incident reports we scanned. — Eighty-four demonstrations we were given: all copies of the same movement. — One hundred seventy-three demonstrations we generated ourselves, in simulation. — And thirteen to fifty percent: boxes placed, before and after one turn of our loop. — (pause on the slogan)">
+    <div class="cell l row1 fx" data-step="0" data-focus="1"><div class="n mega">5+</div><div class="cap type" data-only="1">nurses we called</div></div>
+    <div class="cell r row1 fx" data-step="0" data-focus="2" style="transition-delay:.06s"><div class="n mega">1,497</div><div class="cap type" data-only="2">FDA incident reports scanned</div></div>
+    <div class="cell l row2 fx" data-step="0" data-focus="3" style="transition-delay:.12s"><div class="n mega">84 <span class="red">= 1</span></div><div class="cap type" data-only="3">demos we were given · 1 movement</div></div>
+    <div class="cell r row2 fx" data-step="0" data-focus="4" style="transition-delay:.18s"><div class="n mega">173</div><div class="cap type" data-only="4">demos our expert made in simulation</div></div>
+    <div class="cell wide fx" data-step="0" data-focus="5" style="transition-delay:.24s">
+      <div class="pair"><span class="n mega old">13%</span><span class="n mega" id="fifty">50%</span></div>
+      <div class="cap type" data-only="5">boxes placed · same 30 scenarios · before → after one turn of our loop</div>
+    </div>
+    <div class="slogan fx" data-step="6"><span>Generated live.</span><span class="red">Trained on site.</span></div>
+  </section>
+
+  <!-- THE LOOP: each line bigger than the last -->
+  <section class="slide s-triad" data-scene="triad" data-steps="3"
+    data-note="When our robot fails, our monitor catches it. — The loop diagnoses the problem and creates new training data, so it can be retrained… — …and it only ships when it is better.">
+    <div class="w w1" data-step="0"><div class="t red">It fails.</div><div class="cap type" data-only="0">round 1: 4 of 30 boxes placed</div></div>
+    <div class="w w2" data-step="1"><div class="t">It learns.</div><div class="cap type" data-only="1">the loop orders new demos · we retrain</div></div>
+    <div class="w w3" data-step="2"><div class="t">It adapts.</div><div class="cap type" data-only="2">round 2: 15 of 30 · ships only if better</div></div>
+  </section>
+
+  <!-- FAIL | PASS: replays of the scored round-1 and round-2 episodes of e_002, cut into two rounded panels (frame-locked). Verdicts land when the evidence is visible. -->
+  <section class="slide s-proof" data-scene="proof" data-steps="1" data-optional
+    data-note="Same scenario, same start. Left, round one: it reaches, misses the grasp, and never picks the box up. Fail. Right, after one turn of the loop: it lifts the box, hands it over and puts it on the tray. Pass.">
+    <div class="label fx" data-step="0">SAME SCENARIO · SAME START · 7.5× SPEED</div>
+    <div class="round l">ROUND 1</div>
+    <div class="round r">ROUND 2</div>
+    <div class="vwrap" data-step="0"><video id="proof" src="media/sim/fail_pass.mp4" muted playsinline preload="auto"></video></div>
+    <div class="ring fail l" data-t="3.5"></div>
+    <div class="ring pass r" data-t="8.6"></div>
+    <div class="verdict fail l" data-t="3.5">FAIL <small>never picked it up</small></div>
+    <div class="verdict pass r" data-t="8.6">PASS <small>box on the tray</small></div>
+  </section>
+
+  <!-- HOW -->
+  <section class="slide s-how" data-scene="how" data-steps="7"
+    data-note="But how does it do that? Let me walk you through the full architecture. — Demonstrations come in and get checked: that's how we found eighty-four equals one. A policy trains, and is tested in simulation on thirty scenarios. — When it fails, the pipeline diagnoses the failures and orders new demonstrations. Our scripted expert generates them, and we retrain. — Nothing reaches the robot without passing the gate. — Here are the thirty scenarios. Round one: four boxes placed. — One turn of the loop later: fifteen. Twelve got better, one got worse. This is what we are proudest of. — Then we pushed harder, and round three got worse. The gate said: not yet.">
+    <div class="how fx" data-only="0">How<span class="red">?</span></div>
+    <div class="pipe" id="pipe">
+      <svg viewBox="0 0 1920 1080" aria-hidden="true">
+        <line class="track" x1="260" y1="560" x2="1660" y2="560"/>
+        <path class="arc" id="arc" d="M1310 560 C1310 770 610 770 610 560"/>
+        <circle class="dot" id="dot" cx="260" cy="560" r="15"/>
+      </svg>
+      <div class="stage-w" style="left:260px">INGEST</div>
+      <div class="stage-w" style="left:610px">CHECK</div>
+      <div class="stage-w" style="left:960px">TRAIN</div>
+      <div class="stage-w" style="left:1310px">TEST</div>
+      <div class="stage-w" style="left:1660px">SERVE</div>
+      <div class="arc-label fx" data-step="2">DIAGNOSE · GENERATE · RETRAIN</div>
+      <div class="gate-label fx" data-step="3">GATE</div>
+      <div class="gate" data-step="3"></div>
+      <div class="pcap">
+        <div class="cap type" data-only="1">every model passes five checked stages</div>
+        <div class="cap type" data-only="2">a failure becomes new training data</div>
+        <div class="cap type" data-only="3">nothing ships unless it beats the current model</div>
+      </div>
+    </div>
+    <div class="results fx" data-step="4">
+      <div class="round" id="round">ROUND 1</div>
+      <div class="cells" id="cells"></div>
+      <div class="count"><span class="big mega" id="count">4</span><span class="of">/ 30</span></div>
+      <div class="gcap">
+        <div class="cap type" data-only="4">each square = one test scenario · lit = box placed on the tray</div>
+        <div class="cap type" data-only="5">one turn of the loop · 12 better, 1 worse · p = 0.003, 1 seed</div>
+        <div class="cap type" data-only="6">round 3 scored lower · the gate kept round 2</div>
+      </div>
+      <div class="notyet fx snap" data-step="6">NOT YET.</div>
+    </div>
+  </section>
+
+  <!-- NURSES -->
+  <section class="slide s-nurses" data-scene="nurses" data-steps="4"
+    data-note="The second thing we want to talk about is our nurses' problems. We called our nurse friends and asked what they struggle with most during surgery. We also scraped nearly 1,500 incident reports from the FDA. The most recurring problems a robot could help with were sterility and instrument counts. So we built an image recognition tool that tells sterile from contaminated instruments, and counts them. Let's see it in action.">
+    <div class="photo" data-step="0"><img src="media/nurse.jpg" alt="An operating-room nurse in scrubs"></div>
+    <div class="tag fx" data-step="0"><b>5+</b> nurses we called</div>
+    <div class="right">
+      <div class="fx" data-step="1"><div class="big mega" id="reports">1,497</div><div class="lbl">FDA incident reports</div></div>
+      <div class="duo"><div class="red fx snap" data-step="2">STERILITY</div><div class="fx snap" data-step="2" style="transition-delay:.15s">COUNTING</div></div>
+      <div class="one8 fx" data-step="3">
+        <div><div class="x">1 in 8</div><div class="eight"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        <div class="t">operations end with an instrument count that doesn't add up¹</div>
+      </div>
+    </div>
+    <div class="foot fx" data-step="3">¹ Greenberg et al., Ann Surg 2008;248(2):337–41 · Incident reports: FDA MAUDE via openFDA, 2021–2026</div>
+  </section>
+
+  <!-- DEMO -->
+  <section class="slide s-demo" data-scene="demo" data-steps="1"
+    data-note="Two pairs of scissors are counted. A hand touches them: they turn red, not sterile, and they stay that way.">
+    <div class="vwrap"><video id="demo" src="media/sterility_demo.mp4" muted playsinline preload="auto"></video></div>
+    <div class="chips">
+      <span class="chip" data-t="6.0">COUNT: 2</span>
+      <span class="chip" data-t="9.0">TOUCHED</span>
+      <span class="chip red" data-t="10.0">NOT STERILE</span>
+    </div>
+  </section>
+
+  <!-- CLOSE (proposal; the team decides) -->
+  <section class="slide s-close" data-scene="close" data-steps="2"
+    data-note="Next: a pretrained robot model, a fresh test set, and real arms. Same loop, same gate. — We built the loop that makes a robot better, and tells you when it isn't ready. Everything is open: scan the code for our team guide. We are TALOS.">
+    <div class="label fx" data-only="0">FUTURE SCOPE</div>
+    <div class="rows" id="rows">
+      <div class="row fx" data-step="0"><span class="h">Pretrained robot model</span><span class="cap">path built · untested on this task</span></div>
+      <div class="row fx" data-step="0" style="transition-delay:.12s"><span class="h">Fresh test set</span><span class="cap">scenarios it has never seen</span></div>
+      <div class="row fx" data-step="0" style="transition-delay:.24s"><span class="h">Real arms</span><span class="cap">same loop · same gate</span></div>
+    </div>
+    <div class="final fx" data-step="1"><div class="t">TALOS<span class="dot"></span></div><div class="sub">The loop that adapts.</div></div>
+    <div class="scan fx" data-step="1">
+      <svg class="qr" viewBox="0 0 37 37" role="img" aria-label="QR code: ibrahimify.github.io/talos"><rect width="37" height="37" rx="3.2" fill="#F5F3EE"/><g fill="#CC0000"><rect x="13" y="4" width="1.0" height="1.0" rx="0.5"/><rect x="18" y="4" width="1.0" height="1.0" rx="0.5"/><rect x="21" y="4" width="1.0" height="1.0" rx="0.5"/><rect x="22" y="4" width="1.0" height="1.0" rx="0.5"/><rect x="23" y="4" width="1.0" height="1.0" rx="0.5"/><rect x="13" y="5" width="1.0" height="1.0" rx="0.5"/><rect x="16" y="5" width="1.0" height="1.0" rx="0.5"/><rect x="20" y="5" width="1.0" height="1.0" rx="0.5"/><rect x="21" y="5" width="1.0" height="1.0" rx="0.5"/><rect x="13" y="6" width="1.0" height="1.0" rx="0.5"/><rect x="15" y="6" width="1.0" height="1.0" rx="0.5"/><rect x="16" y="6" width="1.0" height="1.0" rx="0.5"/><rect x="18" y="6" width="1.0" height="1.0" rx="0.5"/><rect x="19" y="6" width="1.0" height="1.0" rx="0.5"/><rect x="21" y="6" width="1.0" height="1.0" rx="0.5"/><rect x="22" y="6" width="1.0" height="1.0" rx="0.5"/><rect x="24" y="6" width="1.0" height="1.0" rx="0.5"/><rect x="14" y="7" width="1.0" height="1.0" rx="0.5"/><rect x="15" y="7" width="1.0" height="1.0" rx="0.5"/><rect x="17" y="7" width="1.0" height="1.0" rx="0.5"/><rect x="22" y="7" width="1.0" height="1.0" rx="0.5"/><rect x="23" y="7" width="1.0" height="1.0" rx="0.5"/><rect x="24" y="7" width="1.0" height="1.0" rx="0.5"/><rect x="13" y="8" width="1.0" height="1.0" rx="0.5"/><rect x="14" y="8" width="1.0" height="1.0" rx="0.5"/><rect x="12" y="9" width="1.0" height="1.0" rx="0.5"/><rect x="14" y="9" width="1.0" height="1.0" rx="0.5"/><rect x="15" y="9" width="1.0" height="1.0" rx="0.5"/><rect x="16" y="9" width="1.0" height="1.0" rx="0.5"/><rect x="19" y="9" width="1.0" height="1.0" rx="0.5"/><rect x="20" y="9" width="1.0" height="1.0" rx="0.5"/><rect x="22" y="9" width="1.0" height="1.0" rx="0.5"/><rect x="23" y="9" width="1.0" height="1.0" rx="0.5"/><rect x="12" y="10" width="1.0" height="1.0" rx="0.5"/><rect x="14" y="10" width="1.0" height="1.0" rx="0.5"/><rect x="16" y="10" width="1.0" height="1.0" rx="0.5"/><rect x="18" y="10" width="1.0" height="1.0" rx="0.5"/><rect x="20" y="10" width="1.0" height="1.0" rx="0.5"/><rect x="22" y="10" width="1.0" height="1.0" rx="0.5"/><rect x="24" y="10" width="1.0" height="1.0" rx="0.5"/><rect x="13" y="11" width="1.0" height="1.0" rx="0.5"/><rect x="14" y="11" width="1.0" height="1.0" rx="0.5"/><rect x="15" y="11" width="1.0" height="1.0" rx="0.5"/><rect x="17" y="11" width="1.0" height="1.0" rx="0.5"/><rect x="21" y="11" width="1.0" height="1.0" rx="0.5"/><rect x="22" y="11" width="1.0" height="1.0" rx="0.5"/><rect x="4" y="12" width="1.0" height="1.0" rx="0.5"/><rect x="7" y="12" width="1.0" height="1.0" rx="0.5"/><rect x="9" y="12" width="1.0" height="1.0" rx="0.5"/><rect x="10" y="12" width="1.0" height="1.0" rx="0.5"/><rect x="12" y="12" width="1.0" height="1.0" rx="0.5"/><rect x="13" y="12" width="1.0" height="1.0" rx="0.5"/><rect x="16" y="12" width="1.0" height="1.0" rx="0.5"/><rect x="18" y="12" width="1.0" height="1.0" rx="0.5"/><rect x="19" y="12" width="1.0" height="1.0" rx="0.5"/><rect x="20" y="12" width="1.0" height="1.0" rx="0.5"/><rect x="23" y="12" width="1.0" height="1.0" rx="0.5"/><rect x="25" y="12" width="1.0" height="1.0" rx="0.5"/><rect x="27" y="12" width="1.0" height="1.0" rx="0.5"/><rect x="4" y="13" width="1.0" height="1.0" rx="0.5"/><rect x="5" y="13" width="1.0" height="1.0" rx="0.5"/><rect x="6" y="13" width="1.0" height="1.0" rx="0.5"/><rect x="7" y="13" width="1.0" height="1.0" rx="0.5"/><rect x="9" y="13" width="1.0" height="1.0" rx="0.5"/><rect x="11" y="13" width="1.0" height="1.0" rx="0.5"/><rect x="13" y="13" width="1.0" height="1.0" rx="0.5"/><rect x="14" y="13" width="1.0" height="1.0" rx="0.5"/><rect x="16" y="13" width="1.0" height="1.0" rx="0.5"/><rect x="17" y="13" width="1.0" height="1.0" rx="0.5"/><rect x="21" y="13" width="1.0" height="1.0" rx="0.5"/><rect x="24" y="13" width="1.0" height="1.0" rx="0.5"/><rect x="25" y="13" width="1.0" height="1.0" rx="0.5"/><rect x="26" y="13" width="1.0" height="1.0" rx="0.5"/><rect x="29" y="13" width="1.0" height="1.0" rx="0.5"/><rect x="32" y="13" width="1.0" height="1.0" rx="0.5"/><rect x="4" y="14" width="1.0" height="1.0" rx="0.5"/><rect x="5" y="14" width="1.0" height="1.0" rx="0.5"/><rect x="6" y="14" width="1.0" height="1.0" rx="0.5"/><rect x="7" y="14" width="1.0" height="1.0" rx="0.5"/><rect x="8" y="14" width="1.0" height="1.0" rx="0.5"/><rect x="9" y="14" width="1.0" height="1.0" rx="0.5"/><rect x="10" y="14" width="1.0" height="1.0" rx="0.5"/><rect x="12" y="14" width="1.0" height="1.0" rx="0.5"/><rect x="13" y="14" width="1.0" height="1.0" rx="0.5"/><rect x="14" y="14" width="1.0" height="1.0" rx="0.5"/><rect x="15" y="14" width="1.0" height="1.0" rx="0.5"/><rect x="16" y="14" width="1.0" height="1.0" rx="0.5"/><rect x="17" y="14" width="1.0" height="1.0" rx="0.5"/><rect x="18" y="14" width="1.0" height="1.0" rx="0.5"/><rect x="20" y="14" width="1.0" height="1.0" rx="0.5"/><rect x="21" y="14" width="1.0" height="1.0" rx="0.5"/><rect x="22" y="14" width="1.0" height="1.0" rx="0.5"/><rect x="23" y="14" width="1.0" height="1.0" rx="0.5"/><rect x="26" y="14" width="1.0" height="1.0" rx="0.5"/><rect x="27" y="14" width="1.0" height="1.0" rx="0.5"/><rect x="28" y="14" width="1.0" height="1.0" rx="0.5"/><rect x="29" y="14" width="1.0" height="1.0" rx="0.5"/><rect x="30" y="14" width="1.0" height="1.0" rx="0.5"/><rect x="31" y="14" width="1.0" height="1.0" rx="0.5"/><rect x="4" y="15" width="1.0" height="1.0" rx="0.5"/><rect x="8" y="15" width="1.0" height="1.0" rx="0.5"/><rect x="9" y="15" width="1.0" height="1.0" rx="0.5"/><rect x="13" y="15" width="1.0" height="1.0" rx="0.5"/><rect x="15" y="15" width="1.0" height="1.0" rx="0.5"/><rect x="17" y="15" width="1.0" height="1.0" rx="0.5"/><rect x="25" y="15" width="1.0" height="1.0" rx="0.5"/><rect x="30" y="15" width="1.0" height="1.0" rx="0.5"/><rect x="31" y="15" width="1.0" height="1.0" rx="0.5"/><rect x="4" y="16" width="1.0" height="1.0" rx="0.5"/><rect x="7" y="16" width="1.0" height="1.0" rx="0.5"/><rect x="10" y="16" width="1.0" height="1.0" rx="0.5"/><rect x="11" y="16" width="1.0" height="1.0" rx="0.5"/><rect x="13" y="16" width="1.0" height="1.0" rx="0.5"/><rect x="14" y="16" width="1.0" height="1.0" rx="0.5"/><rect x="16" y="16" width="1.0" height="1.0" rx="0.5"/><rect x="18" y="16" width="1.0" height="1.0" rx="0.5"/><rect x="21" y="16" width="1.0" height="1.0" rx="0.5"/><rect x="22" y="16" width="1.0" height="1.0" rx="0.5"/><rect x="24" y="16" width="1.0" height="1.0" rx="0.5"/><rect x="25" y="16" width="1.0" height="1.0" rx="0.5"/><rect x="26" y="16" width="1.0" height="1.0" rx="0.5"/><rect x="29" y="16" width="1.0" height="1.0" rx="0.5"/><rect x="31" y="16" width="1.0" height="1.0" rx="0.5"/><rect x="32" y="16" width="1.0" height="1.0" rx="0.5"/><rect x="12" y="17" width="1.0" height="1.0" rx="0.5"/><rect x="16" y="17" width="1.0" height="1.0" rx="0.5"/><rect x="17" y="17" width="1.0" height="1.0" rx="0.5"/><rect x="18" y="17" width="1.0" height="1.0" rx="0.5"/><rect x="23" y="17" width="1.0" height="1.0" rx="0.5"/><rect x="24" y="17" width="1.0" height="1.0" rx="0.5"/><rect x="25" y="17" width="1.0" height="1.0" rx="0.5"/><rect x="4" y="18" width="1.0" height="1.0" rx="0.5"/><rect x="6" y="18" width="1.0" height="1.0" rx="0.5"/><rect x="8" y="18" width="1.0" height="1.0" rx="0.5"/><rect x="10" y="18" width="1.0" height="1.0" rx="0.5"/><rect x="12" y="18" width="1.0" height="1.0" rx="0.5"/><rect x="14" y="18" width="1.0" height="1.0" rx="0.5"/><rect x="15" y="18" width="1.0" height="1.0" rx="0.5"/><rect x="16" y="18" width="1.0" height="1.0" rx="0.5"/><rect x="17" y="18" width="1.0" height="1.0" rx="0.5"/><rect x="18" y="18" width="1.0" height="1.0" rx="0.5"/><rect x="27" y="18" width="1.0" height="1.0" rx="0.5"/><rect x="29" y="18" width="1.0" height="1.0" rx="0.5"/><rect x="30" y="18" width="1.0" height="1.0" rx="0.5"/><rect x="31" y="18" width="1.0" height="1.0" rx="0.5"/><rect x="32" y="18" width="1.0" height="1.0" rx="0.5"/><rect x="4" y="19" width="1.0" height="1.0" rx="0.5"/><rect x="8" y="19" width="1.0" height="1.0" rx="0.5"/><rect x="13" y="19" width="1.0" height="1.0" rx="0.5"/><rect x="20" y="19" width="1.0" height="1.0" rx="0.5"/><rect x="21" y="19" width="1.0" height="1.0" rx="0.5"/><rect x="24" y="19" width="1.0" height="1.0" rx="0.5"/><rect x="27" y="19" width="1.0" height="1.0" rx="0.5"/><rect x="29" y="19" width="1.0" height="1.0" rx="0.5"/><rect x="31" y="19" width="1.0" height="1.0" rx="0.5"/><rect x="6" y="20" width="1.0" height="1.0" rx="0.5"/><rect x="8" y="20" width="1.0" height="1.0" rx="0.5"/><rect x="9" y="20" width="1.0" height="1.0" rx="0.5"/><rect x="10" y="20" width="1.0" height="1.0" rx="0.5"/><rect x="11" y="20" width="1.0" height="1.0" rx="0.5"/><rect x="13" y="20" width="1.0" height="1.0" rx="0.5"/><rect x="14" y="20" width="1.0" height="1.0" rx="0.5"/><rect x="17" y="20" width="1.0" height="1.0" rx="0.5"/><rect x="19" y="20" width="1.0" height="1.0" rx="0.5"/><rect x="21" y="20" width="1.0" height="1.0" rx="0.5"/><rect x="24" y="20" width="1.0" height="1.0" rx="0.5"/><rect x="25" y="20" width="1.0" height="1.0" rx="0.5"/><rect x="27" y="20" width="1.0" height="1.0" rx="0.5"/><rect x="31" y="20" width="1.0" height="1.0" rx="0.5"/><rect x="7" y="21" width="1.0" height="1.0" rx="0.5"/><rect x="11" y="21" width="1.0" height="1.0" rx="0.5"/><rect x="14" y="21" width="1.0" height="1.0" rx="0.5"/><rect x="16" y="21" width="1.0" height="1.0" rx="0.5"/><rect x="17" y="21" width="1.0" height="1.0" rx="0.5"/><rect x="18" y="21" width="1.0" height="1.0" rx="0.5"/><rect x="20" y="21" width="1.0" height="1.0" rx="0.5"/><rect x="21" y="21" width="1.0" height="1.0" rx="0.5"/><rect x="24" y="21" width="1.0" height="1.0" rx="0.5"/><rect x="25" y="21" width="1.0" height="1.0" rx="0.5"/><rect x="26" y="21" width="1.0" height="1.0" rx="0.5"/><rect x="27" y="21" width="1.0" height="1.0" rx="0.5"/><rect x="29" y="21" width="1.0" height="1.0" rx="0.5"/><rect x="32" y="21" width="1.0" height="1.0" rx="0.5"/><rect x="4" y="22" width="1.0" height="1.0" rx="0.5"/><rect x="10" y="22" width="1.0" height="1.0" rx="0.5"/><rect x="11" y="22" width="1.0" height="1.0" rx="0.5"/><rect x="18" y="22" width="1.0" height="1.0" rx="0.5"/><rect x="20" y="22" width="1.0" height="1.0" rx="0.5"/><rect x="22" y="22" width="1.0" height="1.0" rx="0.5"/><rect x="25" y="22" width="1.0" height="1.0" rx="0.5"/><rect x="31" y="22" width="1.0" height="1.0" rx="0.5"/><rect x="32" y="22" width="1.0" height="1.0" rx="0.5"/><rect x="6" y="23" width="1.0" height="1.0" rx="0.5"/><rect x="8" y="23" width="1.0" height="1.0" rx="0.5"/><rect x="11" y="23" width="1.0" height="1.0" rx="0.5"/><rect x="14" y="23" width="1.0" height="1.0" rx="0.5"/><rect x="15" y="23" width="1.0" height="1.0" rx="0.5"/><rect x="18" y="23" width="1.0" height="1.0" rx="0.5"/><rect x="19" y="23" width="1.0" height="1.0" rx="0.5"/><rect x="21" y="23" width="1.0" height="1.0" rx="0.5"/><rect x="22" y="23" width="1.0" height="1.0" rx="0.5"/><rect x="26" y="23" width="1.0" height="1.0" rx="0.5"/><rect x="27" y="23" width="1.0" height="1.0" rx="0.5"/><rect x="31" y="23" width="1.0" height="1.0" rx="0.5"/><rect x="32" y="23" width="1.0" height="1.0" rx="0.5"/><rect x="4" y="24" width="1.0" height="1.0" rx="0.5"/><rect x="7" y="24" width="1.0" height="1.0" rx="0.5"/><rect x="9" y="24" width="1.0" height="1.0" rx="0.5"/><rect x="10" y="24" width="1.0" height="1.0" rx="0.5"/><rect x="11" y="24" width="1.0" height="1.0" rx="0.5"/><rect x="12" y="24" width="1.0" height="1.0" rx="0.5"/><rect x="19" y="24" width="1.0" height="1.0" rx="0.5"/><rect x="20" y="24" width="1.0" height="1.0" rx="0.5"/><rect x="23" y="24" width="1.0" height="1.0" rx="0.5"/><rect x="24" y="24" width="1.0" height="1.0" rx="0.5"/><rect x="25" y="24" width="1.0" height="1.0" rx="0.5"/><rect x="26" y="24" width="1.0" height="1.0" rx="0.5"/><rect x="27" y="24" width="1.0" height="1.0" rx="0.5"/><rect x="28" y="24" width="1.0" height="1.0" rx="0.5"/><rect x="30" y="24" width="1.0" height="1.0" rx="0.5"/><rect x="12" y="25" width="1.0" height="1.0" rx="0.5"/><rect x="13" y="25" width="1.0" height="1.0" rx="0.5"/><rect x="15" y="25" width="1.0" height="1.0" rx="0.5"/><rect x="18" y="25" width="1.0" height="1.0" rx="0.5"/><rect x="20" y="25" width="1.0" height="1.0" rx="0.5"/><rect x="24" y="25" width="1.0" height="1.0" rx="0.5"/><rect x="28" y="25" width="1.0" height="1.0" rx="0.5"/><rect x="30" y="25" width="1.0" height="1.0" rx="0.5"/><rect x="31" y="25" width="1.0" height="1.0" rx="0.5"/><rect x="32" y="25" width="1.0" height="1.0" rx="0.5"/><rect x="13" y="26" width="1.0" height="1.0" rx="0.5"/><rect x="16" y="26" width="1.0" height="1.0" rx="0.5"/><rect x="20" y="26" width="1.0" height="1.0" rx="0.5"/><rect x="21" y="26" width="1.0" height="1.0" rx="0.5"/><rect x="24" y="26" width="1.0" height="1.0" rx="0.5"/><rect x="26" y="26" width="1.0" height="1.0" rx="0.5"/><rect x="28" y="26" width="1.0" height="1.0" rx="0.5"/><rect x="31" y="26" width="1.0" height="1.0" rx="0.5"/><rect x="12" y="27" width="1.0" height="1.0" rx="0.5"/><rect x="13" y="27" width="1.0" height="1.0" rx="0.5"/><rect x="14" y="27" width="1.0" height="1.0" rx="0.5"/><rect x="18" y="27" width="1.0" height="1.0" rx="0.5"/><rect x="19" y="27" width="1.0" height="1.0" rx="0.5"/><rect x="22" y="27" width="1.0" height="1.0" rx="0.5"/><rect x="24" y="27" width="1.0" height="1.0" rx="0.5"/><rect x="28" y="27" width="1.0" height="1.0" rx="0.5"/><rect x="29" y="27" width="1.0" height="1.0" rx="0.5"/><rect x="30" y="27" width="1.0" height="1.0" rx="0.5"/><rect x="32" y="27" width="1.0" height="1.0" rx="0.5"/><rect x="20" y="28" width="1.0" height="1.0" rx="0.5"/><rect x="21" y="28" width="1.0" height="1.0" rx="0.5"/><rect x="22" y="28" width="1.0" height="1.0" rx="0.5"/><rect x="24" y="28" width="1.0" height="1.0" rx="0.5"/><rect x="25" y="28" width="1.0" height="1.0" rx="0.5"/><rect x="26" y="28" width="1.0" height="1.0" rx="0.5"/><rect x="27" y="28" width="1.0" height="1.0" rx="0.5"/><rect x="28" y="28" width="1.0" height="1.0" rx="0.5"/><rect x="32" y="28" width="1.0" height="1.0" rx="0.5"/><rect x="12" y="29" width="1.0" height="1.0" rx="0.5"/><rect x="13" y="29" width="1.0" height="1.0" rx="0.5"/><rect x="14" y="29" width="1.0" height="1.0" rx="0.5"/><rect x="17" y="29" width="1.0" height="1.0" rx="0.5"/><rect x="24" y="29" width="1.0" height="1.0" rx="0.5"/><rect x="26" y="29" width="1.0" height="1.0" rx="0.5"/><rect x="27" y="29" width="1.0" height="1.0" rx="0.5"/><rect x="28" y="29" width="1.0" height="1.0" rx="0.5"/><rect x="29" y="29" width="1.0" height="1.0" rx="0.5"/><rect x="30" y="29" width="1.0" height="1.0" rx="0.5"/><rect x="31" y="29" width="1.0" height="1.0" rx="0.5"/><rect x="14" y="30" width="1.0" height="1.0" rx="0.5"/><rect x="15" y="30" width="1.0" height="1.0" rx="0.5"/><rect x="17" y="30" width="1.0" height="1.0" rx="0.5"/><rect x="20" y="30" width="1.0" height="1.0" rx="0.5"/><rect x="23" y="30" width="1.0" height="1.0" rx="0.5"/><rect x="28" y="30" width="1.0" height="1.0" rx="0.5"/><rect x="29" y="30" width="1.0" height="1.0" rx="0.5"/><rect x="30" y="30" width="1.0" height="1.0" rx="0.5"/><rect x="32" y="30" width="1.0" height="1.0" rx="0.5"/><rect x="15" y="31" width="1.0" height="1.0" rx="0.5"/><rect x="17" y="31" width="1.0" height="1.0" rx="0.5"/><rect x="18" y="31" width="1.0" height="1.0" rx="0.5"/><rect x="19" y="31" width="1.0" height="1.0" rx="0.5"/><rect x="20" y="31" width="1.0" height="1.0" rx="0.5"/><rect x="21" y="31" width="1.0" height="1.0" rx="0.5"/><rect x="22" y="31" width="1.0" height="1.0" rx="0.5"/><rect x="23" y="31" width="1.0" height="1.0" rx="0.5"/><rect x="24" y="31" width="1.0" height="1.0" rx="0.5"/><rect x="25" y="31" width="1.0" height="1.0" rx="0.5"/><rect x="26" y="31" width="1.0" height="1.0" rx="0.5"/><rect x="31" y="31" width="1.0" height="1.0" rx="0.5"/><rect x="12" y="32" width="1.0" height="1.0" rx="0.5"/><rect x="13" y="32" width="1.0" height="1.0" rx="0.5"/><rect x="17" y="32" width="1.0" height="1.0" rx="0.5"/><rect x="20" y="32" width="1.0" height="1.0" rx="0.5"/><rect x="21" y="32" width="1.0" height="1.0" rx="0.5"/><rect x="24" y="32" width="1.0" height="1.0" rx="0.5"/><rect x="25" y="32" width="1.0" height="1.0" rx="0.5"/><rect x="29" y="32" width="1.0" height="1.0" rx="0.5"/><rect x="31" y="32" width="1.0" height="1.0" rx="0.5"/></g><path fill="#CC0000" fill-rule="evenodd" d="M4 4.8a0.8 0.8 0 0 1 0.8 -0.8h5.4a0.8 0.8 0 0 1 0.8 0.8v5.4a0.8 0.8 0 0 1 -0.8 0.8h-5.4a0.8 0.8 0 0 1 -0.8 -0.8zM5 5.48a0.48 0.48 0 0 1 0.48 -0.48h4.04a0.48 0.48 0 0 1 0.48 0.48v4.04a0.48 0.48 0 0 1 -0.48 0.48h-4.04a0.48 0.48 0 0 1 -0.48 -0.48z"/><rect x="6" y="6" width="3" height="3" rx="0.4" fill="#CC0000"/><path fill="#CC0000" fill-rule="evenodd" d="M26 4.8a0.8 0.8 0 0 1 0.8 -0.8h5.4a0.8 0.8 0 0 1 0.8 0.8v5.4a0.8 0.8 0 0 1 -0.8 0.8h-5.4a0.8 0.8 0 0 1 -0.8 -0.8zM27 5.48a0.48 0.48 0 0 1 0.48 -0.48h4.04a0.48 0.48 0 0 1 0.48 0.48v4.04a0.48 0.48 0 0 1 -0.48 0.48h-4.04a0.48 0.48 0 0 1 -0.48 -0.48z"/><rect x="28" y="6" width="3" height="3" rx="0.4" fill="#CC0000"/><path fill="#CC0000" fill-rule="evenodd" d="M4 26.8a0.8 0.8 0 0 1 0.8 -0.8h5.4a0.8 0.8 0 0 1 0.8 0.8v5.4a0.8 0.8 0 0 1 -0.8 0.8h-5.4a0.8 0.8 0 0 1 -0.8 -0.8zM5 27.48a0.48 0.48 0 0 1 0.48 -0.48h4.04a0.48 0.48 0 0 1 0.48 0.48v4.04a0.48 0.48 0 0 1 -0.48 0.48h-4.04a0.48 0.48 0 0 1 -0.48 -0.48z"/><rect x="6" y="28" width="3" height="3" rx="0.4" fill="#CC0000"/></svg>
+      <div class="cap">Our team guide</div>
+      <div class="url">ibrahimify.github.io/talos</div>
+    </div>
+  </section>
+
+  <!-- FINE PRINT: never reached with arrow keys; press A to open/close during Q&A -->
+  <section class="slide s-appendix" data-scene="appendix" data-steps="1" data-appendix
+    data-note="Only for questions. Answer the one asked, then press A to return.">
+    <div class="label">THE FINE PRINT</div>
+    <div class="rows">
+      <div class="row"><b>01</b><span>4 → 15 counts boxes on the tray, not a verified arm-to-arm handover.</span></div>
+      <div class="row"><b>02</b><span>One training seed. Round 2 changed data and training length together.</span></div>
+      <div class="row"><b>03</b><span>The 30 scenarios also guided development; a fresh test set is next.</span></div>
+      <div class="row"><b>04</b><span>Each loop step is run by us. Every result and gate decision is recorded.</span></div>
+      <div class="row"><b>05</b><span>Latest full attempt: 0/1. The box was dropped, and we kept it on record.</span></div>
+    </div>
+  </section>
+
+</div>
+<div id="notes"></div>
+<div id="blank"></div>
+<script src="deck.js"></script>
+</body>
+</html>

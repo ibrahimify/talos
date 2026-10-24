@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0A0A0A">
+<title>TALOS teleprompter</title>
+<style>
+  :root { --bg: #0A0A0A; --ink: #F5F3EE; --red: #CC0000; --dim: rgba(245,243,238,.45); --line: rgba(245,243,238,.14);
+    --mono: Consolas, Menlo, "Courier New", monospace; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: var(--bg); color: var(--ink); }
+  body { font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif; display: flex; flex-direction: column; }
+  header, footer { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px clamp(16px, 4vw, 48px);
+    font-family: var(--mono); font-size: 15px; letter-spacing: .08em; color: var(--dim); text-transform: uppercase; }
+  header { border-bottom: 1px solid var(--line); }
+  footer { border-top: 1px solid var(--line); flex-wrap: wrap; }
+  header b { color: var(--ink); }
+  main { flex: 1; overflow-y: auto; padding: clamp(20px, 5vh, 56px) clamp(16px, 6vw, 96px); }
+  h1 { font-size: clamp(28px, 4vw, 52px); font-weight: 800; letter-spacing: -.02em; margin-bottom: 8px; }
+  .window { font-family: var(--mono); color: var(--dim); font-size: 16px; margin-bottom: clamp(20px, 4vh, 40px); }
+  .script p { font-size: clamp(26px, 3.6vw, 48px); line-height: 1.35; margin-bottom: .55em; max-width: 34em; }
+  .key { font-family: var(--mono); color: var(--red); font-weight: 700; font-size: .85em; margin-right: .4em; white-space: nowrap; }
+  .stage { color: var(--red); font-style: italic; }
+  .timer { font-size: clamp(28px, 4vw, 44px); color: var(--ink); letter-spacing: .02em; }
+  .timer.over { color: var(--red); }
+  .btns { display: flex; gap: 8px; }
+  button { font: 600 15px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink); background: none;
+    border: 1px solid var(--line); padding: 12px 16px; min-height: 44px; cursor: pointer; }
+  button:hover, button:focus-visible { border-color: var(--ink); outline: none; }
+  .hint { width: 100%; font-size: 13px; }
+  .btns { flex-wrap: wrap; }
+  @media (max-width: 640px) {
+    header { font-size: 13px; }
+    .btns { width: 100%; }
+    button { flex: 1; padding: 10px 6px; }
+    .hint { display: none; }
+  }
+</style>
+</head>
+<body>
+<header><span><b>TALOS</b> · teleprompter · 4:00</span><span id="pos"></span></header>
+<main><h1 id="title"></h1><div class="window" id="window"></div><div class="script" id="script"></div></main>
+<footer>
+  <span class="timer" id="timer">0:00</span>
+  <span class="btns"><button id="prev">← Prev</button><button id="go">Start</button><button id="next">Next →</button><button id="reset">Reset</button></span>
+  <span class="hint">← → change slide · Space start/pause the clock · R reset · → in red = press the key on the deck · deck key A = fine print for Q&amp;A</span>
+</footer>
+<script>
+// [title, start s, end s, lines]. "→" starts a line where you press the key on the deck; [..] is a stage direction.
+const SLIDES = [
+  ['Numbers', 0, 45, [
+    '[deck opens on this slide] Do you know what these numbers mean?',
+    '→ Five nurses we called.',
+    '→ Nearly fifteen hundred FDA incident reports we scanned.',
+    '→ Eighty-four demonstrations we were given: all copies of the same movement.',
+    '→ One hundred seventy-three demonstrations we generated ourselves, in simulation.',
+    '→ And thirteen to fifty percent: boxes placed, before and after one turn of our loop.',
+    '→ [pause on the slogan]']],
+  ['It fails. It learns. It adapts.', 45, 65, [
+    '→ When our robot fails, our monitor catches it.',
+    '→ The loop diagnoses the problem and creates new training data, so it can be retrained…',
+    '→ …and it only ships when it is better.']],
+  ['FAIL | PASS', 65, 80, [
+    '→ Same scenario, same start.',
+    'Left, round one: it reaches, misses the grasp, and never picks the box up. Fail.',
+    'Right, after one turn of the loop: it lifts the box, hands it over and puts it on the tray. Pass.']],
+  ['How?', 80, 150, [
+    '→ But how does it do that? Let me walk you through the full architecture.',
+    '→ Demonstrations come in and get checked: that\'s how we found eighty-four equals one. A policy trains, and is tested in simulation on thirty scenarios.',
+    '→ When it fails, the pipeline diagnoses the failures and orders new demonstrations. Our scripted expert generates them, and we retrain.',
+    '→ Nothing reaches the robot without passing the gate.',
+    '→ Here are the thirty scenarios. Round one: four boxes placed.',
+    '→ One turn of the loop later: fifteen. Twelve got better, one got worse. This is what we are proudest of.',
+    '→ Then we pushed harder, and round three got worse. The gate said: not yet.']],
+  ['The nurses', 150, 190, [
+    '→ The second thing we want to talk about is our nurses\' problems. We called our nurse friends and asked what they struggle with most during surgery.',
+    '→ We also scraped nearly 1,500 incident reports from the FDA.',
+    '→ The most recurring problems a robot could help with were sterility and instrument counts.',
+    '→ So we built an image recognition tool that tells sterile from contaminated instruments, and counts them. Let\'s see it in action.']],
+  ['Sterility demo', 190, 215, [
+    '→ Two pairs of scissors are counted. A hand touches them: they turn red, not sterile, and they stay that way.']],
+  ['Future scope · close', 215, 240, [
+    '→ Next: a pretrained robot model, a fresh test set, and real arms. Same loop, same gate.',
+    '→ We built the loop that makes a robot better, and tells you when it isn\'t ready. Scan the code for our team guide. We are TALOS.',
+    '[stop; no thank-you]']],
+];
+
+const $ = id => document.getElementById(id);
+const fmt = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+const esc = s => s.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+let i = 0, running = false, started = 0, elapsed = 0;
+
+function show() {
+  const [title, a, b, lines] = SLIDES[i];
+  $('pos').textContent = `${i + 1} / ${SLIDES.length}`;
+  $('title').textContent = title;
+  $('window').textContent = `${fmt(a)} – ${fmt(b)}`;
+  $('script').innerHTML = lines.map(l => '<p>' + esc(l)
+    .replace(/^→ /, '<span class="key">→</span>')
+    .replace(/\[(.+?)\]/g, '<span class="stage">$1</span>') + '</p>').join('');
+  $('script').parentElement.scrollTop = 0;
+  try { localStorage.setItem('talos-tp-slide', String(i)); } catch (e) {}
+}
+function clock() {
+  const t = running ? elapsed + (performance.now() - started) / 1000 : elapsed;
+  $('timer').textContent = fmt(t);
+  $('timer').classList.toggle('over', t > SLIDES[i][2]);
+  requestAnimationFrame(clock);
+}
+const move = d => { i = Math.max(0, Math.min(SLIDES.length - 1, i + d)); show(); };
+function toggle() {
+  if (running) { elapsed += (performance.now() - started) / 1000; running = false; }
+  else { started = performance.now(); running = true; }
+  $('go').textContent = running ? 'Pause' : 'Start';
+}
+function reset() { running = false; elapsed = 0; i = 0; $('go').textContent = 'Start'; show(); }
+
+$('prev').onclick = () => move(-1);
+$('next').onclick = () => move(1);
+$('go').onclick = toggle;
+$('reset').onclick = reset;
+addEventListener('keydown', e => {
+  if (['ArrowRight', 'PageDown'].includes(e.key)) { e.preventDefault(); move(1); }
+  else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); move(-1); }
+  else if (e.key === ' ') { e.preventDefault(); toggle(); }
+  else if (e.key === 'r' || e.key === 'R') reset();
+});
+try { i = Math.min(SLIDES.length - 1, +localStorage.getItem('talos-tp-slide') || 0); } catch (e) {}
+show();
+clock();
+</script>
+</body>
+</html>
