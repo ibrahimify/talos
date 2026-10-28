@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#10130f">
-  <meta name="description" content="TALOS. A shared direction for our robotics team: the brief, the learning loop and the blueprint.">
-  <title>TALOS | Team manual</title>
+  <meta name="description" content="TALOS: 3rd place at the Siemens Healthineers Robotics &amp; AI Hackathon 2026. Final presentation, code and team guide.">
+  <title>TALOS | Robotics &amp; AI Hackathon 2026</title>
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
 </head>
@@ -14,18 +14,18 @@
   <a class="skip" href="#start">Skip to the brief</a>
   <header class="masthead shell">
     <a href="#top" class="wordmark" aria-label="TALOS home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 6h24M16 6v22M7 12h18M11 18h10"/></svg>TALOS<span>ROBOTICS / 2026</span></a>
-    <nav aria-label="Main navigation"><a href="#workflow">The loop <span>01</span></a><a href="#blueprint">The build <span>02</span></a><a href="#start" class="nav-brief">Get the brief <span aria-hidden="true">↗</span></a></nav>
+    <nav aria-label="Main navigation"><a href="#workflow">The loop <span>01</span></a><a href="#blueprint">The build <span>02</span></a><a href="pitch/" class="nav-brief">Final pitch <span aria-hidden="true">↗</span></a></nav>
   </header>
   <main>
     <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="hero-top shell"><p class="mono"><span class="status-dot"></span> SIX MINDS. ONE DIRECTION.</p><p class="mono">ROBOTICS &amp; LEARNING<br>INDEPENDENT HACKATHON TEAM</p></div>
+      <div class="hero-top shell"><p class="mono"><span class="status-dot"></span> 3RD PLACE · HACKATHON 2026</p><p class="mono">ROBOTICS &amp; LEARNING<br>SIEMENS HEALTHINEERS HACKATHON</p></div>
       <div class="hero-art" aria-hidden="true">
         <svg class="art-fallback" viewBox="0 0 700 600"><g fill="none" stroke="#bd774d" stroke-width=".7"><ellipse cx="350" cy="300" rx="250" ry="105" transform="rotate(-35 350 300)"/><ellipse cx="350" cy="300" rx="230" ry="135" transform="rotate(35 350 300)"/><ellipse cx="350" cy="300" rx="145" ry="250" transform="rotate(-35 350 300)"/></g></svg>
         <canvas id="sculpture"></canvas>
         <div class="art-coordinate coord-left">HUMAN INTENT<br><span>INPUT ↗</span></div><div class="art-coordinate coord-right">LEARNED BEHAVIOR<br><span>↙ OUTPUT</span></div>
       </div>
       <h1 id="hero-title" class="hero-title" aria-label="TALOS"><span aria-hidden="true">T</span><span aria-hidden="true">A</span><span aria-hidden="true">L</span><span aria-hidden="true">O</span><span aria-hidden="true">S</span></h1>
-      <div class="hero-bottom shell"><p>From demonstration<br>to <em>capability.</em></p><div class="hero-caption"><a class="text-link" href="#start">Brief your assistant <span aria-hidden="true">↗</span></a></div><a class="scroll-cue mono" href="#workflow">EXPLORE THE SYSTEM <span aria-hidden="true">↓</span></a></div>
+      <div class="hero-bottom shell"><p>From demonstration<br>to <em>capability.</em></p><div class="hero-caption"><a class="text-link" href="pitch/">See the final pitch <span aria-hidden="true">↗</span></a></div><a class="scroll-cue mono" href="#workflow">EXPLORE THE SYSTEM <span aria-hidden="true">↓</span></a></div>
       <button id="motion-toggle" class="motion-toggle mono" type="button" aria-pressed="false">PAUSE MOTION <span aria-hidden="true">Ⅱ</span></button>
     </section>
 
@@ -64,19 +64,19 @@
     </section>
 
     <section id="blueprint" class="blueprint section shell" aria-labelledby="blueprint-title">
-      <div class="section-meta"><span class="mono">02 / THE BUILD</span><span class="mono">ONE END-TO-END SLICE</span></div>
-      <div class="blueprint-heading"><h2 data-reveal>Less machinery.<br><em>More evidence.</em></h2><p class="body-copy">Reuse the learning stack.<br>Make the interfaces work.<br>Demonstrate the actual result.</p></div>
+      <div class="section-meta"><span class="mono">02 / THE BUILD</span><span class="mono">HACKATHON PROTOTYPE</span></div>
+      <div class="blueprint-heading"><h2 data-reveal>Less machinery.<br><em>More evidence.</em></h2><p class="body-copy">Dataset checks, ACT training,<br>simulation evaluation and serving.<br>People run and review the loop.</p></div>
       <div class="build-rows">
-        <article class="build-row" data-reveal><span class="build-number">01</span><div><span class="mono">DATA / THE FOUNDATION</span><h3>Trust the input.</h3></div><p>Validate observations and actions.<br>Replay one demonstration before training.</p><span class="artifact mono">DATASET + VALIDATION</span></article>
-        <article class="build-row" data-reveal><span class="build-number">02</span><div><span class="mono">POLICY / THE CORE</span><h3>Train one thing well.</h3></div><p>Start with compatible BC or ACT.<br>Save a complete reloadable checkpoint.</p><span class="artifact mono">CONFIG + CHECKPOINT</span></article>
-        <article class="build-row" data-reveal><span class="build-number">03</span><div><span class="mono">EVALUATION / THE PROOF</span><h3>Earn the release.</h3></div><p>Run closed-loop simulation.<br>Compare the candidate with the incumbent.</p><span class="artifact mono">ROLLOUTS + DECISION</span></article>
+        <article class="build-row" data-reveal><span class="build-number">01</span><div><span class="mono">DATA / THE FOUNDATION</span><h3>Trust the input.</h3></div><p>Read robot demonstrations.<br>Report invalid or repeated motion.</p><span class="artifact mono">DATASET + VALIDATION</span></article>
+        <article class="build-row" data-reveal><span class="build-number">02</span><div><span class="mono">POLICY / THE CORE</span><h3>Train one thing well.</h3></div><p>Train ACT with LeRobot.<br>Save weights and processors.</p><span class="artifact mono">CONFIG + CHECKPOINT</span></article>
+        <article class="build-row" data-reveal><span class="build-number">03</span><div><span class="mono">EVALUATION / THE PROOF</span><h3>Earn the release.</h3></div><p>Compare recorded rollouts.<br>Keep the incumbent when results regress.</p><span class="artifact mono">ROLLOUTS + DECISION</span></article>
       </div>
-      <div class="feedback"><span aria-hidden="true">↶</span><p>One observed failure. One reviewed change. Evaluate again.<br><strong>Keep the incumbent if the candidate regresses.</strong></p></div>
+      <div class="feedback"><span aria-hidden="true">↶</span><p>Historical placement score: 4/30 to 15/30 on 30 scenarios.<br><strong>Placement on the tray; full handover remains unverified.</strong></p></div>
       <div class="references"><span class="mono">RESEARCH TO BUILD ON</span><a href="https://github.com/huggingface/lerobot" target="_blank" rel="noreferrer">LeRobot <span>Reuse the trainer ↗</span></a><a href="https://42-ai.github.io/posts/LeRobotHackathonHighlights/" target="_blank" rel="noreferrer">Previous hackathons <span>Focus the demo ↗</span></a><a href="https://anniesch.github.io/demo-score/" target="_blank" rel="noreferrer">Demo-SCORE <span>Curate with outcomes ↗</span></a></div>
     </section>
 
     <section id="start" class="brief section shell" aria-labelledby="brief-title">
-      <div class="section-meta"><span class="mono">03 / THE BRIEF</span><span class="mono">READ ONCE. SHARE THE DIRECTION.</span></div>
+      <div class="section-meta"><span class="mono">03 / TEAM GUIDE</span><span class="mono">HACKATHON WORKFLOW ARCHIVE</span></div>
       <div class="brief-heading"><h2 data-reveal>Your assistant.<br><em>Our context.</em></h2><p class="body-copy">Copy the complete onboarding prompt.<br>Load the challenge, research and branding.<br>Paste and send. Nothing to fill in.</p></div>
       <div class="prompt-workbench" data-reveal><div class="onboarding-heading"><span class="mono">PERSISTENT PROJECT ONBOARDING</span><span class="mono">research + branding</span></div><div class="prompt-content"><div class="prompt-label mono"><span>PASTE INTO CHATGPT / CODEX / CLAUDE</span><span id="prompt-size"></span></div><p id="prompt-text" tabindex="0" role="region" aria-label="Complete onboarding prompt">Initialize TALOS project context now and keep using its research and branding during all later work in this repository. This is a complete onboarding task; do not ask me to supply another task.
 
@@ -89,10 +89,10 @@ Load research from origin/research:docs/research and branding from origin/brandi
 Also read git show origin/main:docs/engineering/SOFTWARE_ENGINEERING_PRINCIPLES.md once during engineering onboarding and git show origin/main:docs/engineering/ENGINEERING_CHECKLIST.md. Apply the checklist to later coding tasks; refresh only relevant or changed standards, and keep the original C2 PDF primary.
 
 Apply the agreed pipeline blueprint and the correct TALOS design surface, reuse existing work, and follow data, licensing, motion and verification rules. If repository/PDF access is missing, report the exact blocker rather than guessing. Finish with a brief report of reviewed references, core requirements, design rules and actual blockers. If an implementation task is already assigned, continue it using this guidance; otherwise finish onboarding without unrelated code changes, training, installation or deployment. Nothing needs filling in.</p><div class="prompt-footer"><span class="mono">COMPLETE PROMPT. NO EXTRA TASK REQUIRED.</span><button id="copy-prompt" class="copy-button" type="button"><span>Copy onboarding prompt</span><span aria-hidden="true">↗</span></button></div><p id="copy-status" class="sr-only" role="status"></p></div></div>
-      <div class="branch-links"><a href="https://github.com/crystalfruit2/siemens_healthineers/tree/research" target="_blank" rel="noreferrer"><span class="mono">TECHNICAL DECISIONS</span>research <span aria-hidden="true">↗</span></a><a href="https://github.com/crystalfruit2/siemens_healthineers/tree/branding/docs/design" target="_blank" rel="noreferrer"><span class="mono">DESIGN DIRECTION</span>branding <span aria-hidden="true">↗</span></a><p>Use a repository-connected assistant.<br>Plain chat cannot fetch private branches.</p></div>
+      <div class="branch-links"><a href="https://github.com/crystalfruit2/siemens_healthineers/tree/research" target="_blank" rel="noreferrer"><span class="mono">TECHNICAL DECISIONS</span>research <span aria-hidden="true">↗</span></a><a href="https://github.com/crystalfruit2/siemens_healthineers/tree/branding/docs/design" target="_blank" rel="noreferrer"><span class="mono">DESIGN DIRECTION</span>branding <span aria-hidden="true">↗</span></a><p>Use a repository-connected assistant.<br>Restricted assets are supplied separately.</p></div>
     </section>
-    <section class="closing shell"><span class="mono">THE NEXT MOVE</span><h2 data-reveal>Before a long run,<br><em>replay one demo.</em></h2><a href="#start" class="closing-link" aria-label="Return to assistant prompts">↗</a><p>Confirm the data contract, simulator and evaluator.<br>Everything else starts there.</p></section>
+    <section class="closing shell"><span class="mono">HACKATHON RESULT</span><h2 data-reveal>Third place.<br><em>Built together.</em></h2><a href="pitch/" class="closing-link" aria-label="Open the final hackathon presentation">↗</a><p>Siemens Healthineers Robotics &amp; AI Hackathon 2026.<br>Explore the final presentation, code and recorded findings.</p></section>
   </main>
-  <footer class="shell"><a class="footer-brand" href="#top">TALOS</a><p>Alp Eldam · Ege Tugay · Kerem Ozkan<br>Muhammad Ibrahim Shoeb · Jiaqi Guo · Laetitia Carli</p><div><span>Independent team. Proposed blueprint.</span><a href="https://github.com/ibrahimify/talos">Source ↗</a></div></footer>
+  <footer class="shell"><a class="footer-brand" href="#top">TALOS</a><p>Muhammad Ibrahim Shoeb · Alp Eldam · Ege Tugay<br>Kerem Ozkan · Jiaqi Guo · Laetitia Carli</p><div><span>3rd place · Hackathon 2026.</span><a href="https://github.com/crystalfruit2/siemens_healthineers">Code &amp; docs ↗</a></div></footer>
 </body>
 </html>
