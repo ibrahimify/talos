@@ -2,7 +2,7 @@
 
 Team TALOS · Siemens Healthineers Hackathon 2026, Challenge 2: the learning loop around a robot.
 
-**Hackathon result: joint 3rd place, alongside Team Solo.**
+**Hackathon result: 3rd place.**
 
 22–24 October 2026 · Siemens Healthineers Innovation Center, Erlangen, Germany.
 
