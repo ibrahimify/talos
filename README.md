@@ -4,6 +4,8 @@ Team TALOS · Siemens Healthineers Hackathon 2026, Challenge 2: the learning loo
 
 **Hackathon result: 3rd place.**
 
+22–24 October 2026 · Siemens Healthineers Innovation Center, Erlangen, Germany.
+
 Muhammad Ibrahim Shoeb, Alp Eldam, Ege Tugay, Kerem Ozkan, Jiaqi Guo, Laetitia Carli.
 
 | Page | Link |
@@ -11,6 +13,7 @@ Muhammad Ibrahim Shoeb, Alp Eldam, Ege Tugay, Kerem Ozkan, Jiaqi Guo, Laetitia C
 | Team guide | https://ibrahimify.github.io/talos/ |
 | Finals pitch | https://ibrahimify.github.io/talos/pitch/ |
 | Teleprompter | https://ibrahimify.github.io/talos/teleprompter/ |
+| BME EELISA experience report | [Download the report](docs/reports/BME-EELISA-Hackathon-Report-2026.docx) |
 | Code, docs and findings | https://github.com/crystalfruit2/siemens_healthineers |
 
 **Presenting the pitch:** open the link in Chrome or Edge, press `F` for fullscreen, `→` / `←` or a clicker to step,
